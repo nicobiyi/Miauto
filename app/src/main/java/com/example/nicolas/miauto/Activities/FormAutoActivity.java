@@ -1,6 +1,8 @@
 package com.example.nicolas.miauto.Activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -42,7 +44,7 @@ public class FormAutoActivity extends Activity {
         btnRegistrarAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chequearTextos()){
+                if (chequearTextosVacios()){
                     String patente= etPatente.getText().toString();
                     String marca= etMarca.getText().toString();
                     String modelo= etModelo.getText().toString();
@@ -60,13 +62,79 @@ public class FormAutoActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        super.onResume();
+        if (bdHelper.hayAuto(bd)){
+            Intent intent = new Intent(FormAutoActivity.this, GarageActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(FormAutoActivity.this, GarageActivity.class);
-        startActivity(intent);
+        if (!chequearTextosLLenos()) {
+            Intent intent = new Intent(FormAutoActivity.this, GarageActivity.class);
+            startActivity(intent);
+        } else {
+            alertaDiscardChanges();
+        }
         return true;
     }
 
-    private boolean chequearTextos() {
+    private void alertaDiscardChanges() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FormAutoActivity.this);
+        builder.setMessage("Los datos ingresados se perderán")
+                .setTitle("Descartar cambios?");
+
+        builder.setCancelable(true);
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(FormAutoActivity.this, GarageActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setIcon(R.drawable.remove_car);
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //no hace nada
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();    }
+
+    private boolean chequearTextosLLenos() {
+        String texto;
+        texto = etPatente.getText().toString();
+        if(!TextUtils.isEmpty(texto)) {
+            return true;
+        }
+        texto = etMarca.getText().toString();
+        if(!TextUtils.isEmpty(texto)) {
+            return true;
+        }
+        texto = etModelo.getText().toString();
+        if(!TextUtils.isEmpty(texto)) {
+            return true;
+        }
+        texto = etChasis.getText().toString();
+        if(!TextUtils.isEmpty(texto)) {
+            return true;
+        }
+        texto = etMotor.getText().toString();
+        if(!TextUtils.isEmpty(texto)) {
+            return true;
+        }
+        texto = etTipo.getText().toString();
+        if(!TextUtils.isEmpty(texto)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean chequearTextosVacios() {
         boolean ok = true;
         String texto;
         texto = etPatente.getText().toString();

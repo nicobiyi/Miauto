@@ -148,6 +148,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onResume() {
         super.onResume();
+        super.onResume();
+        if (!bdHelper.hayAuto(db)){
+            Intent intent = new Intent(MapsActivity.this, GarageActivity.class);
+            startActivity(intent);
+        }
         if (!checkGPS()) {
             encenderGPS();
         }
