@@ -94,7 +94,6 @@ public class bdHelper {
 
     public static String damePatente(SQLiteDatabase bd){
         String patente="";
-        // Seleccionamos todos los registros de la tabla Cars
         Cursor cursor = bd.rawQuery("select patente from Auto", null);
 
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {

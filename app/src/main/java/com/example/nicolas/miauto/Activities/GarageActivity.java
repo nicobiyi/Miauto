@@ -2,12 +2,15 @@ package com.example.nicolas.miauto.Activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -56,6 +59,29 @@ public class GarageActivity extends Activity {
         btnBorrarAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                borrarAuto();
+            }
+        });
+        //chequea permisos GPS
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]
+                            {Manifest.permission.ACCESS_FINE_LOCATION},
+                    1);
+        }
+    }
+
+    private void borrarAuto() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(GarageActivity.this);
+        builder.setMessage("Está seguro que desea borrar este auto?")
+                .setTitle("Patente: " + bdHelper.damePatente(bd));
+
+        builder.setCancelable(true);
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 bdHelper.eliminarAuto(bd);
                 btnBorrarAuto.setVisibility(View.INVISIBLE);
                 btnAuto.setText("Crear Auto...");
@@ -69,15 +95,19 @@ public class GarageActivity extends Activity {
                 });
             }
         });
-        //chequea permisos GPS
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]
-                            {Manifest.permission.ACCESS_FINE_LOCATION},
-                    1);
-        }
+        builder.setIcon(R.drawable.remove_car);
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            //no hace nada
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+
+            }
     }
 
-
-}
