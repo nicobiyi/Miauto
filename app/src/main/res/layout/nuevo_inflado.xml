@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_camionetasuperior"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.nicolas.miauto.Activities.NeumaticosActivity">
+
+
+    <ImageButton
+        android:id="@+id/btnPressUpdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btnPressDowndd"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/ic_up"
+        app:layout_constraintBottom_toTopOf="@+id/tvPressValuedd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPressUpdi"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnPressDowndd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="89dp"
+        android:layout_marginTop="141dp"
+        android:src="@drawable/ic_down"
+        app:layout_constraintBottom_toTopOf="@+id/btnPressUptd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPressDowndi"
+        app:layout_constraintTop_toBottomOf="@+id/tvPressValuedd" />
+
+    <TextView
+        android:id="@+id/tvPressValuedd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="105dp"
+        android:layout_marginTop="110dp"
+        android:background="@color/colorPrimary"
+        android:text="30"
+        app:layout_constraintBottom_toTopOf="@+id/btnPressDowndd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvPressValuedi"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressUpdd" />TextView
+
+    <ImageButton
+        android:id="@+id/btnPressUptd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btnPressUpdd"
+        android:layout_marginBottom="147dp"
+        android:src="@drawable/ic_up"
+        app:layout_constraintBottom_toTopOf="@+id/tvPressValuetd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPressUpti"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressDowndd" />
+
+    <ImageButton
+        android:id="@+id/btnPressDowntd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btnPressUpdd"
+        android:layout_alignTop="@+id/btnPressDownti"
+        android:src="@drawable/ic_down"
+        app:layout_constraintBottom_toTopOf="@+id/btnPressUpau"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPressDownti"
+        app:layout_constraintTop_toBottomOf="@+id/tvPressValuetd" />
+
+    <TextView
+        android:id="@+id/tvPressValuetd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvPressValuedd"
+        android:layout_alignTop="@+id/tvPressValueti"
+        android:background="@color/colorPrimary"
+        android:text="30"
+        app:layout_constraintBottom_toTopOf="@+id/btnPressDowntd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvPressValueti"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressUptd" />TextView
+
+    <ImageButton
+        android:id="@+id/btnPressUpdi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/btnPressUpdd"
+        android:layout_marginStart="84dp"
+        android:src="@drawable/ic_up"
+        app:layout_constraintBottom_toTopOf="@+id/tvPressValuedi"
+        app:layout_constraintEnd_toStartOf="@+id/btnPressUpdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnPressDowndi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btnPressUpdi"
+        android:layout_alignTop="@+id/btnPressDowndd"
+        android:src="@drawable/ic_down"
+        app:layout_constraintBottom_toTopOf="@+id/btnPressUpti"
+        app:layout_constraintEnd_toStartOf="@+id/btnPressDowndd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPressValuedi" />
+
+    <TextView
+        android:id="@+id/tvPressValuedi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/tvPressValuedd"
+        android:layout_marginStart="106dp"
+        android:background="@color/colorPrimary"
+        android:text="30"
+        app:layout_constraintBottom_toTopOf="@+id/btnPressDowndi"
+        app:layout_constraintEnd_toStartOf="@+id/tvPressValuedd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressUpdi" />TextView
+
+    <ImageButton
+        android:id="@+id/btnPressUpti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btnPressUpdi"
+        android:layout_alignTop="@+id/btnPressUptd"
+        android:src="@drawable/ic_up"
+        app:layout_constraintBottom_toTopOf="@+id/tvPressValueti"
+        app:layout_constraintEnd_toStartOf="@+id/btnPressUptd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressDowndi" />
+
+    <ImageButton
+        android:id="@+id/btnPressDownti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btnPressUpdi"
+        android:layout_marginBottom="56dp"
+        android:src="@drawable/ic_down"
+        app:layout_constraintBottom_toTopOf="@id/btnPressUpau"
+        app:layout_constraintEnd_toStartOf="@+id/btnPressDowntd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPressValueti" />
+
+    <TextView
+        android:id="@+id/tvPressValueti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/tvPressValuedi"
+        android:layout_marginBottom="117dp"
+        android:background="@color/colorPrimary"
+        android:text="30"
+        app:layout_constraintBottom_toTopOf="@+id/btnPressDownti"
+        app:layout_constraintEnd_toStartOf="@+id/tvPressValuetd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressUpti" />TextView
+
+    <ImageButton
+        android:id="@+id/btnPressUpau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="77dp"
+        android:src="@drawable/ic_up"
+        app:layout_constraintBottom_toTopOf="@+id/tvPressValueau"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressDownti" />
+
+    <ImageButton
+        android:id="@+id/btnPressDownau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPressValueau" />
+
+    <TextView
+        android:id="@+id/tvPressValueau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnPressDownti"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:text="30"
+        app:layout_constraintBottom_toTopOf="@+id/btnPressDownau"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressUpau" />TextView
+
+
+    <ImageButton
+        android:id="@+id/btnGuardarInflado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvPressValueau"
+        app:layout_constraintTop_toBottomOf="@+id/btnPressDowntd" />
+
+
+</RelativeLayout>

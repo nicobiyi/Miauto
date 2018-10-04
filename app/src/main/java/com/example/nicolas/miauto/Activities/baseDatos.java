@@ -15,6 +15,15 @@ public class baseDatos extends SQLiteOpenHelper {
             "  chasis varchar(30),\n" +
             "  motor varchar(30)\n" +
             ");";
+    String neumaticos = "CREATE TABLE Neumaticos (\n" +
+            "  id INTEGER PRIMARY KEY,\n" +
+            "  fecha varchar(10) NOT NULL,\n" +
+            "  ruedadd int,\n" +
+            "  ruedadi int,\n" +
+            "  ruedatd int,\n" +
+            "  ruedati int,\n" +
+            "  ruedaau int \n" +
+            ");";
 
     public baseDatos(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -26,6 +35,7 @@ public class baseDatos extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(estacionamiento);
         db.execSQL(auto);
+        db.execSQL(neumaticos);
     }
 
     @Override
@@ -33,10 +43,11 @@ public class baseDatos extends SQLiteOpenHelper {
         //Se elimina la versión anterior de la tabla
         db.execSQL("DROP TABLE IF EXISTS Estacionamiento");
         db.execSQL("DROP TABLE IF EXISTS Auto");
-
+        db.execSQL("DROP TABLE IF EXISTS Neumaticos");
 
         //Se crea la nueva versión de la tabla
         db.execSQL(estacionamiento);
         db.execSQL(auto);
+        db.execSQL(neumaticos);
     }
 }
