@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/section_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tab1carga" />
+
+    <TextView
+        android:id="@+id/tvFechaCarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:textSize="24sp"
+        android:layout_alignStart="@+id/tvLitros"
+        android:layout_alignBottom="@+id/etFechaCarga" />
+
+    <EditText
+        android:id="@+id/etFechaCarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="9dp"
+        android:layout_toEndOf="@+id/tvTotal"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/tvLitros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/section_label"
+        android:layout_marginTop="80dp"
+        android:layout_toStartOf="@+id/btnGuardarCarga"
+        android:text="Litros"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etLitros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="88,88"
+        android:inputType="numberDecimal"
+        android:layout_alignBaseline="@+id/tvLitros"
+        android:layout_alignBottom="@+id/tvLitros"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/tvTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total $"
+        android:textSize="24sp"
+        android:layout_below="@+id/etLitros"
+        android:layout_alignStart="@+id/tvLitros"
+        android:layout_marginTop="22dp" />
+
+    <EditText
+        android:id="@+id/etTotalCarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="9999,99"
+        android:inputType="numberDecimal"
+        android:layout_alignBaseline="@+id/tvTotal"
+        android:layout_alignBottom="@+id/tvTotal"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/btnGuardarCarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="67dp"
+        android:text="Guardar Carga" />
+
+    <EditText
+        android:id="@+id/etKilometraje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/etTotalCarga"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/tvKilometros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/etKilometraje"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="11dp"
+        android:layout_toStartOf="@+id/etKilometraje"
+        android:text="Kilometros"
+        android:textSize="14sp" />
+
+
+</RelativeLayout>

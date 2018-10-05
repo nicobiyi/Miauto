@@ -91,6 +91,10 @@ public class bdHelper {
         bd.execSQL(sql);
         sql = "DELETE FROM Neumaticos;";
         bd.execSQL(sql);
+        sql = "DELETE FROM Combustible;";
+        bd.execSQL(sql);
+        sql = "DELETE FROM Kilometraje;";
+        bd.execSQL(sql);
     }
 
     public static String damePatente(SQLiteDatabase bd){
@@ -190,5 +194,76 @@ public class bdHelper {
         return ids.size();
     }
 
+    public static void guardarCargaCombustible(SQLiteDatabase bd, CargaCombustible carga) throws Exception {
+        //Si hemos abierto correctamente la base de datos
+        if (bd != null) {
+            //Creamos el registro a insertar como objeto ContentValues
+            //regularizarHistorialCombustible(bd);
+            int id_km = getUltimoIdKm(bd);
 
+            if(id_km == -1){
+                //no tiene km cargado
+                throw new Exception("No hay KM Cargado");
+            }
+
+            cargarKm(bd, carga.getFecha(), carga.getKilometraje());
+            ContentValues nuevoRegistro = new ContentValues();
+
+            // El ID es auto incrementable como declaramos en nuestro CarsSQLiteHelper
+            //nuevoRegistro.put("id", 0);
+            nuevoRegistro.put("fecha", carga.getFecha());
+            nuevoRegistro.put("litros", carga.getLitros());
+            nuevoRegistro.put("total", carga.getTotal());
+
+            //Insertamos el registro en la base de datos
+            bd.insert("Combustible", null, nuevoRegistro);
+
+
+        }
+    }
+
+    private static int getUltimoIdKm(SQLiteDatabase bd) {
+        int id_km = -1;
+        Cursor cursor = bd.rawQuery("select max(id) from Kilometraje", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                id_km = cursor.getInt(cursor.getColumnIndex("id"));
+                cursor.moveToNext();
+            }
+        }
+        return id_km;
+    }
+
+    private static void cargarKm(SQLiteDatabase bd, String fecha, int kilometraje) {
+        if (bd != null) {
+            //Creamos el registro a insertar como objeto ContentValues
+
+            ContentValues nuevoRegistro = new ContentValues();
+
+            nuevoRegistro.put("fecha", fecha);
+            nuevoRegistro.put("kilometros", kilometraje);
+
+            //Insertamos el registro en la base de datos
+            bd.insert("Kilometraje", null, nuevoRegistro);
+        }
+    }
+
+
+    public static double dameUltimaCarga(SQLiteDatabase bd) {
+        double total = -1;
+        Cursor cursor = bd.rawQuery("select total from Combustible order by id desc limit 1", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                total = cursor.getInt(cursor.getColumnIndex("total"));
+                cursor.moveToNext();
+            }
+        }
+        return total;
+    }
 }

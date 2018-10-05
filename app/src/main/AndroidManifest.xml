@@ -25,7 +25,6 @@
         </activity>
         <activity android:name=".Activities.FormAutoActivity" />
         <activity android:name=".Activities.MenuActivity" />
-        <activity android:name=".Activities.CombustibleActivity" />
         <activity android:name=".Activities.NeumaticosActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -41,7 +40,10 @@
 
         <activity
             android:name=".Activities.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".Activities.CombustibleActivity"
+            android:label="@string/title_activity_combustible"></activity>
     </application>
 
 </manifest>
