@@ -51,6 +51,11 @@ public class Tab1Carga extends Fragment {
         etKm = (EditText) myFragmentView.findViewById(R.id.etKilometraje);
         btn = (Button) myFragmentView.findViewById(R.id.btnGuardarCarga);
 
+        //busco y autocompleto el Km mayor que tenga la bd
+
+        int kmMax = bdHelper.dameKilometrajeMaximo(bd);
+        etKm.setText(Integer.toString(kmMax));
+        //Toast.makeText(getActivity().getApplicationContext(), "datos:" + bdHelper.dameUltimaCarga(bd), Toast.LENGTH_LONG).show();
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,11 +70,14 @@ public class Tab1Carga extends Fragment {
                     etFecha.setText("");
                     etLitros.setText("");
                     etTotal.setText("");
+                    etKm.setText(bdHelper.dameKilometrajeMaximo(bd));
+
                 } catch (Exception e) {
                     Toast.makeText(getActivity().getApplicationContext(),e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
+
         });
 
         return myFragmentView;
@@ -81,7 +89,7 @@ public class Tab1Carga extends Fragment {
         String fecha = "27/09/2018";
         double litros = Double.parseDouble(etLitros.getText().toString());
         double total = Double.parseDouble(etTotal.getText().toString());
-        int km = 1223123;
+        int km = Integer.parseInt(etKm.getText().toString());
 
         carga = new CargaCombustible(fecha, km, litros, total);
         return carga;

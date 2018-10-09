@@ -81,6 +81,12 @@ public class bdHelper {
 
             //Insertamos el registro en la base de datos
             bd.insert("Auto", null, nuevoRegistro);
+
+            //inserto el KmInicial en la bd
+            ContentValues otroRegistro = new ContentValues();
+            otroRegistro.put("fecha", "31/12/2020");
+            otroRegistro.put("kilometros", auto.getKmInicial());
+            bd.insert("Kilometraje", null, otroRegistro);
         }
     }
 
@@ -224,7 +230,7 @@ public class bdHelper {
 
     private static int getUltimoIdKm(SQLiteDatabase bd) {
         int id_km = -1;
-        Cursor cursor = bd.rawQuery("select max(id) from Kilometraje", null);
+        Cursor cursor = bd.rawQuery("select max(id) id from Kilometraje", null);
 
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
             // iteramos sobre el cursor de resultados,
@@ -266,4 +272,22 @@ public class bdHelper {
         }
         return total;
     }
+
+    public static int dameKilometrajeMaximo(SQLiteDatabase bd) {
+        int kmMaximo = -1;
+        Cursor cursor = bd.rawQuery("select max(kilometros) km from Kilometraje", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                kmMaximo = cursor.getInt(cursor.getColumnIndex("km"));
+                cursor.moveToNext();
+            }
+        }
+        return kmMaximo;
+
+    }
+
+
 }

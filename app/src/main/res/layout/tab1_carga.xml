@@ -86,8 +86,7 @@
         android:layout_below="@+id/etTotalCarga"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/tvKilometros"
