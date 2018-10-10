@@ -205,32 +205,30 @@ public class bdHelper {
         if (bd != null) {
             //Creamos el registro a insertar como objeto ContentValues
             //regularizarHistorialCombustible(bd);
-            int id_km = getUltimoIdKm(bd);
-
-            if(id_km == -1){
-                //no tiene km cargado
-                throw new Exception("No hay KM Cargado");
+            if(carga.isActualizarKm()){
+                cargarKm(bd, carga.getFecha(), carga.getKilometraje());
             }
 
-            cargarKm(bd, carga.getFecha(), carga.getKilometraje());
+            int id_km = getIdKm(bd, carga.getKilometraje());
+
             ContentValues nuevoRegistro = new ContentValues();
 
             // El ID es auto incrementable como declaramos en nuestro CarsSQLiteHelper
-            //nuevoRegistro.put("id", 0);
+
             nuevoRegistro.put("fecha", carga.getFecha());
             nuevoRegistro.put("litros", carga.getLitros());
             nuevoRegistro.put("total", carga.getTotal());
+            nuevoRegistro.put("id_kilometraje", id_km);
 
             //Insertamos el registro en la base de datos
             bd.insert("Combustible", null, nuevoRegistro);
 
-
         }
     }
 
-    private static int getUltimoIdKm(SQLiteDatabase bd) {
+    private static int getIdKm(SQLiteDatabase bd, int km) {
         int id_km = -1;
-        Cursor cursor = bd.rawQuery("select max(id) id from Kilometraje", null);
+        Cursor cursor = bd.rawQuery("select id from Kilometraje k where k.kilometros = " +  km, null);
 
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
             // iteramos sobre el cursor de resultados,

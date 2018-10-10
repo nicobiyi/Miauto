@@ -11,11 +11,16 @@ public class CargaCombustible {
     private double litros;
     private double total;
 
-    public CargaCombustible(String fecha, int kilometraje, double litros, double total) {
+
+
+    private  boolean actualizarKm;
+
+    public CargaCombustible(String fecha, int kilometraje, double litros, double total, boolean actualizarKM) {
         this.fecha = fecha;
         this.kilometraje = kilometraje;
         this.litros = litros;
         this.total = total;
+        this.actualizarKm = actualizarKM;
     }
 
     public String getFecha() {
@@ -24,6 +29,10 @@ public class CargaCombustible {
 
     public int getKilometraje() {
         return kilometraje;
+    }
+
+    public boolean isActualizarKm() {
+        return actualizarKm;
     }
 
     public double getLitros() {

@@ -1,6 +1,7 @@
 package com.example.nicolas.miauto.Fragments;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ public class Tab1Carga extends Fragment {
     private EditText etTotal;
     private EditText etKm;
     private Button btn;
-
+    private int kmMax;
     private CargaCombustible nuevaCarga;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
@@ -53,7 +54,7 @@ public class Tab1Carga extends Fragment {
 
         //busco y autocompleto el Km mayor que tenga la bd
 
-        int kmMax = bdHelper.dameKilometrajeMaximo(bd);
+        kmMax = bdHelper.dameKilometrajeMaximo(bd);
         etKm.setText(Integer.toString(kmMax));
         //Toast.makeText(getActivity().getApplicationContext(), "datos:" + bdHelper.dameUltimaCarga(bd), Toast.LENGTH_LONG).show();
 
@@ -61,16 +62,17 @@ public class Tab1Carga extends Fragment {
             @Override
             public void onClick(View v) {
                 //Guardar en Base de Datos
-                nuevaCarga = capturarCargaCombustible(myFragmentView);
+                nuevaCarga = capturarCargaCombustible();
                 try {
                     bdHelper.guardarCargaCombustible(bd, nuevaCarga);
                     // Avisar al usuario que se guardo OK
-                    Toast.makeText(getActivity().getApplicationContext(),"TEXTO PRUEBA", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"Carga OK", Toast.LENGTH_LONG).show();
                     // vaciar los EditText para una nueva carga
                     etFecha.setText("");
                     etLitros.setText("");
                     etTotal.setText("");
                     etKm.setText(bdHelper.dameKilometrajeMaximo(bd));
+                    //cambiarFragment();
 
                 } catch (Exception e) {
                     Toast.makeText(getActivity().getApplicationContext(),e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
@@ -84,14 +86,20 @@ public class Tab1Carga extends Fragment {
     }
 
 
-    private CargaCombustible capturarCargaCombustible (View view){
+
+
+    private CargaCombustible capturarCargaCombustible (){
         CargaCombustible carga;
+        boolean actualizarKM = true;
         String fecha = "27/09/2018";
         double litros = Double.parseDouble(etLitros.getText().toString());
         double total = Double.parseDouble(etTotal.getText().toString());
         int km = Integer.parseInt(etKm.getText().toString());
+        if (km == kmMax ){
+            actualizarKM = false;
+        }
 
-        carga = new CargaCombustible(fecha, km, litros, total);
+        carga = new CargaCombustible(fecha, km, litros, total, actualizarKM);
         return carga;
     }
 }
