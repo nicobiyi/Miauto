@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.Fragments.HistorialInflado;
 import com.example.nicolas.miauto.Fragments.NuevoInflado;
 import com.example.nicolas.miauto.R;

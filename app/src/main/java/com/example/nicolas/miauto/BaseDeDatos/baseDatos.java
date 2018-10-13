@@ -1,4 +1,4 @@
-package com.example.nicolas.miauto.Activities;
+package com.example.nicolas.miauto.BaseDeDatos;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

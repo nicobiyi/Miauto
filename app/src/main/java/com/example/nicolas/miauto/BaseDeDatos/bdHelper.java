@@ -1,9 +1,12 @@
-package com.example.nicolas.miauto.Activities;
+package com.example.nicolas.miauto.BaseDeDatos;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.nicolas.miauto.Clases.Auto;
+import com.example.nicolas.miauto.Clases.CargaCombustible;
+import com.example.nicolas.miauto.Clases.Inflado;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;

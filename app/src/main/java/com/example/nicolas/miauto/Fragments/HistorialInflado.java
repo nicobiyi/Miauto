@@ -9,13 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.nicolas.miauto.Activities.Inflado;
-import com.example.nicolas.miauto.Activities.baseDatos;
+import com.example.nicolas.miauto.Clases.Inflado;
+import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.R;
 
 import java.util.List;
 
-import static com.example.nicolas.miauto.Activities.bdHelper.getNeumaticos;
+import static com.example.nicolas.miauto.BaseDeDatos.bdHelper.getNeumaticos;
 
 public class HistorialInflado extends Fragment {
 

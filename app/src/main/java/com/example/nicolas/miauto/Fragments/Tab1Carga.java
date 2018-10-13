@@ -1,7 +1,6 @@
 package com.example.nicolas.miauto.Fragments;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,9 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.nicolas.miauto.Activities.CargaCombustible;
-import com.example.nicolas.miauto.Activities.baseDatos;
-import com.example.nicolas.miauto.Activities.bdHelper;
+import com.example.nicolas.miauto.Clases.CargaCombustible;
+import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.R;
 
 /**
