@@ -21,6 +21,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

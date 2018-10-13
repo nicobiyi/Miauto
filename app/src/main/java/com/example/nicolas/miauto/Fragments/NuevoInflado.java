@@ -10,9 +10,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nicolas.miauto.Activities.Inflado;
-import com.example.nicolas.miauto.Activities.baseDatos;
-import com.example.nicolas.miauto.Activities.bdHelper;
+import com.example.nicolas.miauto.Clases.Inflado;
+import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.R;
 
 public class NuevoInflado extends Fragment {

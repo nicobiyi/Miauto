@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.nicolas.miauto.Activities.baseDatos;
-import com.example.nicolas.miauto.Activities.bdHelper;
+
+
+import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.R;
 
 import org.w3c.dom.Text;
@@ -37,7 +39,7 @@ public class Tab3Estadisticas extends Fragment {
         ltsMensuales = (TextView) rootView.findViewById(R.id.etLitrosMensuales);
 
 
-        String total = bdHelper.getGastoTotalMesActual();
+        //String total = bdHelper.getGastoTotalMesActual(bd);
 
 
 

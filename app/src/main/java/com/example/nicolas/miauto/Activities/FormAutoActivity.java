@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
+import com.example.nicolas.miauto.Clases.Auto;
 import com.example.nicolas.miauto.R;
 
 public class FormAutoActivity extends Activity {

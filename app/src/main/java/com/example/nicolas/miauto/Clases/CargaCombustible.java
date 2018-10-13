@@ -1,4 +1,4 @@
-package com.example.nicolas.miauto.Activities;
+package com.example.nicolas.miauto.Clases;
 
 /**
  * Created by Nicolas on 4/10/2018.

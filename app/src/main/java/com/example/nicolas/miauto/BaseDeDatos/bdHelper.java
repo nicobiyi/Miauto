@@ -1,9 +1,12 @@
-package com.example.nicolas.miauto.Activities;
+package com.example.nicolas.miauto.BaseDeDatos;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.nicolas.miauto.Clases.Auto;
+import com.example.nicolas.miauto.Clases.CargaCombustible;
+import com.example.nicolas.miauto.Clases.Inflado;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -314,7 +317,7 @@ public class bdHelper {
         return list;
     }
 
-    public static String getGastoTotalMesActual(SQLiteDatabase bd) {
+    public static int getGastoTotalMesActual(SQLiteDatabase bd) {
         int pesosMensuales = -1;
         Cursor cursor = bd.rawQuery("select fecha, sum(total) totalMes from Kilometraje group by fecha", null);
 
@@ -322,11 +325,11 @@ public class bdHelper {
             // iteramos sobre el cursor de resultados,
             // y vamos rellenando el array que posteriormente devolveremos
             while (cursor.isAfterLast() == false) {
-                kmMaximo = cursor.getInt(cursor.getColumnIndex("km"));
+                pesosMensuales = cursor.getInt(cursor.getColumnIndex("km"));
                 cursor.moveToNext();
             }
         }
-        return kmMaximo;
+        return pesosMensuales;
     }
 
 

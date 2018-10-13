@@ -7,13 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.nicolas.miauto.Activities.CargaCombustible;
-import com.example.nicolas.miauto.Activities.baseDatos;
-import com.example.nicolas.miauto.Activities.bdHelper;
+
+
+import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
+import com.example.nicolas.miauto.Clases.CargaCombustible;
 import com.example.nicolas.miauto.R;
 
 import java.util.ArrayList;

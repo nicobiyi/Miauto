@@ -1,4 +1,4 @@
-package com.example.nicolas.miauto.Activities;
+package com.example.nicolas.miauto.Clases;
 
 public class Auto {
     private String patente;
