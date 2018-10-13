@@ -351,4 +351,46 @@ public class bdHelper {
 
 
 
+    public static List<CargaCombustible> getCargas(SQLiteDatabase db) {
+        CargaCombustible carga = null;
+
+        // Seleccionamos todos los registros de la tabla Neumaticos
+        Cursor cursor = db.rawQuery("select c.fecha,c.litros, c.total, k.kilometros from Combustible c join Kilometraje k on c.id_kilometraje = k.id order by c.id desc limit 20", null);
+        List<CargaCombustible> list = new ArrayList<CargaCombustible>();
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+
+                String fecha = cursor.getString(cursor.getColumnIndex("fecha"));
+                int litros = cursor.getInt(cursor.getColumnIndex("litros"));
+                int total = cursor.getInt(cursor.getColumnIndex("total"));
+                int km = cursor.getInt(cursor.getColumnIndex("kilometros"));
+
+                carga = new CargaCombustible(fecha, km, litros, total, false);
+                list.add(carga);
+                cursor.moveToNext();
+            }
+
+        }
+        return list;
+    }
+
+    public static int getGastoTotalMesActual(SQLiteDatabase bd) {
+        int pesosMensuales = -1;
+        Cursor cursor = bd.rawQuery("select fecha, sum(total) totalMes from Kilometraje group by fecha", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                pesosMensuales = cursor.getInt(cursor.getColumnIndex("km"));
+                cursor.moveToNext();
+            }
+        }
+        return pesosMensuales;
+    }
+
+
 }
