@@ -61,6 +61,6 @@ public class CargaCombustible {
 
     @Override
     public String toString() {
-        return  fecha + "  ||  " + litros + " lts  ||  Total $ " + total;
+        return  fecha + "  ||  " + litros + " lts  ||  $ " + total;
     }
 }
