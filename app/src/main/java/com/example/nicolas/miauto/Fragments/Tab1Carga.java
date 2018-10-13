@@ -16,6 +16,9 @@ import com.example.nicolas.miauto.Activities.baseDatos;
 import com.example.nicolas.miauto.Activities.bdHelper;
 import com.example.nicolas.miauto.R;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by Nicolas on 4/10/2018.
  */
@@ -53,11 +56,14 @@ public class Tab1Carga extends Fragment {
         btn = (Button) myFragmentView.findViewById(R.id.btnGuardarCarga);
 
         //busco y autocompleto el Km mayor que tenga la bd
-
         kmMax = bdHelper.dameKilometrajeMaximo(bd);
         etKm.setText(Integer.toString(kmMax));
-        //Toast.makeText(getActivity().getApplicationContext(), "datos:" + bdHelper.dameUltimaCarga(bd), Toast.LENGTH_LONG).show();
 
+        //autocompleto con la fecha de hoy la fecha
+        Date fechaActual = Calendar.getInstance().getTime();
+        etFecha.setText(fechaActual.toString());
+
+        //accion del boton
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +78,7 @@ public class Tab1Carga extends Fragment {
                     etLitros.setText("");
                     etTotal.setText("");
                     etKm.setText(bdHelper.dameKilometrajeMaximo(bd));
-                    //cambiarFragment();
+
 
                 } catch (Exception e) {
                     Toast.makeText(getActivity().getApplicationContext(),e.getLocalizedMessage(), Toast.LENGTH_LONG).show();

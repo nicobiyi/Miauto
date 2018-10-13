@@ -58,4 +58,9 @@ public class CargaCombustible {
     public void setTotal(double total) {
         this.total = total;
     }
+
+    @Override
+    public String toString() {
+        return  fecha + "  ||  " + litros + " lts  ||  Total $ " + total;
+    }
 }
