@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.nicolas.miauto.Clases.CargaCombustible;
 import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
+import com.example.nicolas.miauto.Genericos.Fechador;
 import com.example.nicolas.miauto.R;
 
 import java.util.Calendar;
@@ -59,8 +60,8 @@ public class Tab1Carga extends Fragment {
         etKm.setText(Integer.toString(kmMax));
 
         //autocompleto con la fecha de hoy la fecha
-        Date fechaActual = Calendar.getInstance().getTime();
-        etFecha.setText(fechaActual.toString());
+        String fechaActual = Fechador.dameFechaActual();
+        etFecha.setText(fechaActual);
 
         //accion del boton
         btn.setOnClickListener(new View.OnClickListener() {
