@@ -38,6 +38,8 @@ public class HistorialInflado extends Fragment {
     TextView ti;
     TextView au;
     TextView textAviso;
+    TextView textKms;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class HistorialInflado extends Fragment {
         btnFecha1 = (ImageButton) myFragmentView.findViewById(R.id.btnFecha1);
         btnFecha2 = (ImageButton) myFragmentView.findViewById(R.id.btnFecha2);
         btnFecha3 = (ImageButton) myFragmentView.findViewById(R.id.btnFecha3);
+        textKms = (TextView) myFragmentView.findViewById(R.id.tvKmInflado);
 
         setFechas (myFragmentView, inflados);
 
@@ -101,6 +104,7 @@ return myFragmentView;
         td.setText(String.format(String.valueOf(inflado.getRuedatd())));
         ti.setText(String.format(String.valueOf(inflado.getRuedati())));
         au.setText(String.format(String.valueOf(inflado.getRuedaau())));
+        textKms.setText(String.format(String.valueOf(inflado.getKilometraje())));
     }
 
 
@@ -120,6 +124,7 @@ return myFragmentView;
                 td.setText("--");
                 ti.setText("--");
                 au.setText("--");
+                textKms.setText("--");
                 textAviso.setVisibility(View.VISIBLE);
                 break;
             case 1 :

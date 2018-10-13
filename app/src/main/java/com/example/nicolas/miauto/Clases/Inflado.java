@@ -2,13 +2,26 @@ package com.example.nicolas.miauto.Clases;
 
 public class Inflado {
 
-    public Inflado(String fecha, int ruedadd, int ruedadi, int ruedatd, int ruedati, int ruedaau) {
+    public Inflado(String fecha, int ruedadd, int ruedadi, int ruedatd, int ruedati, int ruedaau, int kilometraje, boolean actualizarKm ) {
         this.fecha = fecha;
         this.ruedadd = ruedadd;
         this.ruedadi = ruedadi;
         this.ruedatd = ruedatd;
         this.ruedati = ruedati;
         this.ruedaau = ruedaau;
+        this.kilometraje = kilometraje;
+        this.actualizarKm = actualizarKm;
+    }
+
+    public Inflado(String fecha, int ruedadd, int ruedadi, int ruedatd, int ruedati, int ruedaau, int kilometraje) {
+        this.fecha = fecha;
+        this.ruedadd = ruedadd;
+        this.ruedadi = ruedadi;
+        this.ruedatd = ruedatd;
+        this.ruedati = ruedati;
+        this.ruedaau = ruedaau;
+        this.kilometraje = kilometraje;
+        this.actualizarKm = false;
     }
 
     String fecha;
@@ -17,6 +30,8 @@ public class Inflado {
     int ruedatd;
     int ruedati;
     int ruedaau;
+    int kilometraje;
+    private  boolean actualizarKm;
 
     public String getFecha() {
         return fecha;
@@ -64,5 +79,21 @@ public class Inflado {
 
     public void setRuedaau(int ruedaau) {
         this.ruedaau = ruedaau;
+    }
+
+    public int getKilometraje() {
+        return kilometraje;
+    }
+
+    public void setKilometraje(int idKm) {
+        this.kilometraje = idKm;
+    }
+
+    public boolean isActualizarKm() {
+        return actualizarKm;
+    }
+
+    public void setActualizarKm(boolean actualizarKm) {
+        this.actualizarKm = actualizarKm;
     }
 }

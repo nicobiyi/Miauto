@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class NuevoInflado extends Fragment {
     private ImageButton btnDownau;
     private ImageButton btnGuardar;
     private Inflado nuevoInflado;
+    private EditText kms;
+    private int kmsActual;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
     private String fecha;
@@ -44,6 +47,10 @@ public class NuevoInflado extends Fragment {
         final View myFragmentView = inflater.inflate(R.layout.nuevo_inflado, container, false);
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
+
+        kmsActual = bdHelper.dameKilometrajeMaximo(bd);
+        kms = (EditText) myFragmentView.findViewById(R.id.etKilometrajeInf);
+        kms.setText(String.format(String.valueOf(kmsActual)));
 
         ImageButton btnUpdd = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpdd);
         btnUpdd.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +161,7 @@ public class NuevoInflado extends Fragment {
         return Integer.parseInt(texttemp.getText().toString());
     }
 
-    private Inflado dameInflado (View view){
+    /*private Inflado dameInflado (View view){
         Inflado in;
 
         int dd =damePresion(R.id.tvPressValuedd, view);
@@ -164,6 +171,23 @@ public class NuevoInflado extends Fragment {
         int au =damePresion(R.id.tvPressValueau, view);
         in = new Inflado("27/09/2018", dd, di, td, ti, au);
         return in;
-    }
+    }*/
 
+    private Inflado dameInflado (View view) {
+        Inflado in;
+        boolean actualizarKM = true;
+        int dd = damePresion(R.id.tvPressValuedd, view);
+        int di = damePresion(R.id.tvPressValuedi, view);
+        int td = damePresion(R.id.tvPressValuetd, view);
+        int ti = damePresion(R.id.tvPressValueti, view);
+        int au = damePresion(R.id.tvPressValueau, view);
+        int kmsAux = Integer.parseInt(kms.getText().toString());
+        //String fecha = Fechador.dameFecha();
+        String fecha = "09/10/2018";
+        if (kmsActual == kmsAux) {
+            actualizarKM = false;
+        }
+        in = new Inflado(fecha, dd, di, td, ti, au, kmsAux, actualizarKM);
+        return in;
+    }
 }
