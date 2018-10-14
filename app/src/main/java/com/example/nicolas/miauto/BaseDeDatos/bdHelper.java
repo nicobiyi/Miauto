@@ -134,8 +134,10 @@ public class bdHelper {
                 int ruedatd = cursor.getInt(cursor.getColumnIndex("ruedatd"));
                 int ruedati = cursor.getInt(cursor.getColumnIndex("ruedati"));
                 int ruedaau = cursor.getInt(cursor.getColumnIndex("ruedaau"));
+                int idKm = cursor.getInt(cursor.getColumnIndex("id_kilometraje"));
+                int kms = dameKilometraje(db, idKm);
 
-                inflado = new Inflado(fecha, ruedadd, ruedadi, ruedatd, ruedati, ruedaau);
+                inflado = new Inflado(fecha, ruedadd, ruedadi, ruedatd, ruedati, ruedaau, kms);
                 list.add(inflado);
                 cursor.moveToNext();
             }
@@ -144,7 +146,7 @@ public class bdHelper {
         return list;
     }
 
-    public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado) {
+    /*public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado) {
         //Si hemos abierto correctamente la base de datos
         if (bd != null) {
             //Creamos el registro a insertar como objeto ContentValues
@@ -162,6 +164,48 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             bd.insert("Neumaticos", null, nuevoRegistro);
         }
+    }*/
+
+    public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado) {
+        //Si hemos abierto correctamente la base de datos
+        if (bd != null) {
+            //Creamos el registro a insertar como objeto ContentValues
+            if(nuevoInflado.isActualizarKm() && !existeFecha( bd, nuevoInflado.getKilometraje(), nuevoInflado.getFecha())){
+                cargarKm(bd, nuevoInflado.getFecha(), nuevoInflado.getKilometraje());
+            }
+
+            int id_km = getIdKm(bd, nuevoInflado.getKilometraje());
+
+            regularizarHistorial(bd);
+            ContentValues nuevoRegistro = new ContentValues();
+            // El ID es auto incrementable como declaramos en nuestro CarsSQLiteHelper
+            //nuevoRegistro.put("id", 0);
+            nuevoRegistro.put("fecha", nuevoInflado.getFecha());
+            nuevoRegistro.put("ruedadd", nuevoInflado.getRuedadd());
+            nuevoRegistro.put("ruedadi", nuevoInflado.getRuedadi());
+            nuevoRegistro.put("ruedatd", nuevoInflado.getRuedatd());
+            nuevoRegistro.put("ruedati", nuevoInflado.getRuedati());
+            nuevoRegistro.put("ruedaau", nuevoInflado.getRuedaau());
+            nuevoRegistro.put("id_kilometraje", id_km);
+            //Insertamos el registro en la base de datos
+            bd.insert("Neumaticos", null, nuevoRegistro);
+        }
+    }
+
+    private static boolean existeFecha(SQLiteDatabase bd, int kilometraje, String fecha) {
+        boolean existe = false;
+        Cursor cursor = bd.rawQuery("select id from Kilometraje k where k.kilometros = " +  kilometraje + " and k.fecha = " + fecha, null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+               // id_km = cursor.getInt(cursor.getColumnIndex("id"));
+                existe = true;
+                cursor.moveToNext();
+            }
+        }
+        return existe;
     }
 
     private static void regularizarHistorial(SQLiteDatabase db) {
@@ -283,6 +327,22 @@ public class bdHelper {
         return kmMaximo;
 
     }
+
+    public static int dameKilometraje(SQLiteDatabase bd, int id) {
+        int kms = 0;
+        Cursor cursor = bd.rawQuery("select kilometros from Kilometraje k where k.id = " + id, null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                kms = cursor.getInt(cursor.getColumnIndex("kilometros"));
+                cursor.moveToNext();
+            }
+        }
+        return kms;
+    }
+
 
 
     public static List<CargaCombustible> getCargas(SQLiteDatabase db) {

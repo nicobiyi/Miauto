@@ -22,7 +22,8 @@ public class baseDatos extends SQLiteOpenHelper {
             "  ruedadi int,\n" +
             "  ruedatd int,\n" +
             "  ruedati int,\n" +
-            "  ruedaau int \n" +
+            "  ruedaau int, \n" +
+            "  id_kilometraje int \n" +
             ");";
 
     String combustible = "CREATE TABLE Combustible (\n" +

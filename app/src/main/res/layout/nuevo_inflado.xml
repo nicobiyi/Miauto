@@ -218,5 +218,15 @@
         app:layout_constraintStart_toStartOf="@id/tvPressValueau"
         app:layout_constraintTop_toBottomOf="@+id/btnPressDowntd" />
 
+    <EditText
+        android:id="@+id/etKilometrajeInf"
+        android:layout_width="99dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Kms" />
 
 </RelativeLayout>
