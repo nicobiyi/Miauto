@@ -1,8 +1,6 @@
 package com.example.nicolas.miauto.Fragments;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,9 +16,6 @@ import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.Genericos.Fechador;
 import com.example.nicolas.miauto.R;
-
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by Nicolas on 4/10/2018.
@@ -52,7 +47,7 @@ public class Tab1Carga extends Fragment {
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
 
-        etFecha = (EditText) myFragmentView.findViewById(R.id.etFechaCarga);
+        etFecha = (EditText) myFragmentView.findViewById(R.id.edFechaCargaCombustible);
         etLitros = (EditText) myFragmentView.findViewById(R.id.etLitros);
         etTotal = (EditText) myFragmentView.findViewById(R.id.etTotalCarga);
         etKm = (EditText) myFragmentView.findViewById(R.id.etKilometraje);
@@ -81,16 +76,14 @@ public class Tab1Carga extends Fragment {
                     try {
                         bdHelper.guardarCargaCombustible(bd, nuevaCarga);
                         // Avisar al usuario que se guardo OK
-                        Toast.makeText(getActivity().getApplicationContext(),"Carga OK", Toast.LENGTH_LONG).show();
-                        // vaciar los EditText para una nueva carga
-                        etFecha.setText("");
-                        etLitros.setText("");
-                        etTotal.setText("");
-                        etKm.setText(bdHelper.dameKilometrajeMaximo(bd));
-
-
+                        Toast.makeText(getActivity().getApplicationContext(),"Carga de combustible realizada con éxito", Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
+                        Toast.makeText(getActivity().getApplicationContext(),"Error al cargar combustible", Toast.LENGTH_LONG).show();
+
                     }
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),"Por favor, completar los campos obligatorios", Toast.LENGTH_LONG).show();
+
                 }
 
 
@@ -122,8 +115,7 @@ public class Tab1Carga extends Fragment {
     public boolean validarInputs(){
         boolean ok = true;
 
-        String temp = etFecha.getText().toString();
-        if(temp.length() == 0); {
+        if(TextUtils.isEmpty(etFecha.getText().toString())) {
             etFecha.setError("Este campo es obligatorio.");
             ok = false;
         }

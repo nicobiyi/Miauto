@@ -3,29 +3,22 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tab1carga" />
-
-    <TextView
         android:id="@+id/tvFechaCarga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha"
         android:textSize="24sp"
         android:layout_alignStart="@+id/tvLitros"
-        android:layout_alignBottom="@+id/etFechaCarga" />
+        android:layout_alignBottom="@+id/edFechaCargaCombustible" />
 
     <EditText
-        android:id="@+id/etFechaCarga"
+        android:id="@+id/edFechaCargaCombustible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="9dp"
         android:layout_toEndOf="@+id/tvTotal"
-        android:ems="10"
-        android:inputType="date" />
+        android:ems="10"/>
 
     <TextView
         android:id="@+id/tvLitros"
