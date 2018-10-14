@@ -72,6 +72,8 @@ public class GarageActivity extends Activity {
         }
     }
 
+
+
     private void borrarAuto() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(GarageActivity.this);
