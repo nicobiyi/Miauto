@@ -18,6 +18,7 @@ import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.R;
 
+
 public class GarageActivity extends Activity {
 
     Button btnAuto;
@@ -41,6 +42,7 @@ public class GarageActivity extends Activity {
             btnAuto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Intent intent = new Intent(GarageActivity.this, MenuActivity.class);
                     startActivity(intent);
                 }
@@ -93,6 +95,7 @@ public class GarageActivity extends Activity {
                     public void onClick(View v) {
                         Intent intent = new Intent(GarageActivity.this, FormAutoActivity.class);
                         startActivity(intent);
+
                     }
                 });
             }
@@ -106,10 +109,7 @@ public class GarageActivity extends Activity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-
-
-
-
             }
+
     }
 

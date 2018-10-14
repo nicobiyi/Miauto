@@ -1,11 +1,13 @@
 package com.example.nicolas.miauto.Fragments;
 
+import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import com.example.nicolas.miauto.Clases.Inflado;
 import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.R;
+
+import java.util.Calendar;
 
 public class NuevoInflado extends Fragment {
 
@@ -134,9 +138,25 @@ public class NuevoInflado extends Fragment {
             @Override
             public void onClick(View view) {
 
-                nuevoInflado = dameInflado(myFragmentView);
-                bdHelper.crearInflado(bd, nuevoInflado);
-                Toast.makeText(getActivity().getApplicationContext(),"Nuevo inflado guardado!",Toast.LENGTH_LONG).show();
+
+                Calendar calendar =  Calendar.getInstance();
+                int anio = calendar.get(Calendar.YEAR);
+                int mes = calendar.get(Calendar.MONTH);
+                int dia = calendar.get(Calendar.DAY_OF_MONTH);
+                final String[] fecha = new String[1];
+                DatePickerDialog dpd = new DatePickerDialog(myFragmentView.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        month++;
+                        fecha[0] = dayOfMonth + "/" + month + "/" + year;
+                        nuevoInflado = dameInflado(myFragmentView, fecha[0]);
+                        bdHelper.crearInflado(bd, nuevoInflado);
+                        Toast.makeText(getActivity().getApplicationContext(),"Nuevo inflado guardado!",Toast.LENGTH_LONG).show();
+                    }
+                }, anio, mes, dia);
+                dpd.show();
+
+
 
             }
         });
@@ -161,19 +181,7 @@ public class NuevoInflado extends Fragment {
         return Integer.parseInt(texttemp.getText().toString());
     }
 
-    /*private Inflado dameInflado (View view){
-        Inflado in;
-
-        int dd =damePresion(R.id.tvPressValuedd, view);
-        int di =damePresion(R.id.tvPressValuedi, view);
-        int td =damePresion(R.id.tvPressValuetd, view);
-        int ti =damePresion(R.id.tvPressValueti, view);
-        int au =damePresion(R.id.tvPressValueau, view);
-        in = new Inflado("27/09/2018", dd, di, td, ti, au);
-        return in;
-    }*/
-
-    private Inflado dameInflado (View view) {
+    private Inflado dameInflado(View view, String fecha) {
         Inflado in;
         boolean actualizarKM = true;
         int dd = damePresion(R.id.tvPressValuedd, view);
@@ -182,8 +190,6 @@ public class NuevoInflado extends Fragment {
         int ti = damePresion(R.id.tvPressValueti, view);
         int au = damePresion(R.id.tvPressValueau, view);
         int kmsAux = Integer.parseInt(kms.getText().toString());
-        //String fecha = Fechador.dameFecha();
-        String fecha = "09/10/2018";
         if (kmsActual == kmsAux) {
             actualizarKM = false;
         }

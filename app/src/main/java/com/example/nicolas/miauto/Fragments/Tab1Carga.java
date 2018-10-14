@@ -1,6 +1,9 @@
 package com.example.nicolas.miauto.Fragments;
 
+import android.app.DatePickerDialog;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +20,8 @@ import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.Genericos.Fechador;
 import com.example.nicolas.miauto.R;
+
+import java.util.Calendar;
 
 /**
  * Created by Nicolas on 4/10/2018.
@@ -32,8 +38,7 @@ public class Tab1Carga extends Fragment {
     private CargaCombustible nuevaCarga;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
-
-
+    private String fechaActual;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,10 +63,33 @@ public class Tab1Carga extends Fragment {
         etKm.setText(Integer.toString(kmMax));
 
         //autocompleto con la fecha de hoy la fecha
-        String fechaActual = Fechador.dameFechaActual();
+        fechaActual = Fechador.dameFechaActual();
         etFecha.setText(fechaActual);
 
+        etFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Calendar calendar =  Calendar.getInstance();
+                int anio = calendar.get(Calendar.YEAR);
+                int mes = calendar.get(Calendar.MONTH);
+                int dia = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dpd = new DatePickerDialog(myFragmentView.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        month++;
+                        etFecha.setText(dayOfMonth + "/" + month + "/" + year);
+                    }
+                }, anio, mes, dia);
+                dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        etFecha.setText(fechaActual);
+                    }
+                });
+                dpd.show();
+            }
+        });
 
         //accion del boton
         btn.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +122,20 @@ public class Tab1Carga extends Fragment {
         return myFragmentView;
     }
 
+    private void dameFecha() {
+        Calendar calendar =  Calendar.getInstance();
+        int anio = calendar.get(Calendar.YEAR);
+        int mes = calendar.get(Calendar.MONTH);
+        mes++;
+        int dia = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog dpd = new DatePickerDialog(getActivity().getApplicationContext(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
+            }
+        }, anio, mes, dia);
+        dpd.show();
+    }
 
 
     private CargaCombustible capturarCargaCombustible (){
