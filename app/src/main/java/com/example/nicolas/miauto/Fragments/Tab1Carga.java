@@ -1,8 +1,11 @@
 package com.example.nicolas.miauto.Fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,26 +66,33 @@ public class Tab1Carga extends Fragment {
         String fechaActual = Fechador.dameFechaActual();
         etFecha.setText(fechaActual);
 
+
+
         //accion del boton
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Guardar en Base de Datos
-                nuevaCarga = capturarCargaCombustible();
-                try {
-                    bdHelper.guardarCargaCombustible(bd, nuevaCarga);
-                    // Avisar al usuario que se guardo OK
-                    Toast.makeText(getActivity().getApplicationContext(),"Carga OK", Toast.LENGTH_LONG).show();
-                    // vaciar los EditText para una nueva carga
-                    etFecha.setText("");
-                    etLitros.setText("");
-                    etTotal.setText("");
-                    etKm.setText(bdHelper.dameKilometrajeMaximo(bd));
+
+                if(validarInputs()) {
+
+                    //Guardar en Base de Datos
+                    nuevaCarga = capturarCargaCombustible();
+
+                    try {
+                        bdHelper.guardarCargaCombustible(bd, nuevaCarga);
+                        // Avisar al usuario que se guardo OK
+                        Toast.makeText(getActivity().getApplicationContext(),"Carga OK", Toast.LENGTH_LONG).show();
+                        // vaciar los EditText para una nueva carga
+                        etFecha.setText("");
+                        etLitros.setText("");
+                        etTotal.setText("");
+                        etKm.setText(bdHelper.dameKilometrajeMaximo(bd));
 
 
-                } catch (Exception e) {
-                    Toast.makeText(getActivity().getApplicationContext(),e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                    }
                 }
+
 
             }
 
@@ -97,15 +107,44 @@ public class Tab1Carga extends Fragment {
     private CargaCombustible capturarCargaCombustible (){
         CargaCombustible carga;
         boolean actualizarKM = true;
-        String fecha = "27/09/2018";
-        double litros = Double.parseDouble(etLitros.getText().toString());
-        double total = Double.parseDouble(etTotal.getText().toString());
-        int km = Integer.parseInt(etKm.getText().toString());
-        if (km == kmMax ){
-            actualizarKM = false;
-        }
+                String fecha = etFecha.getText().toString();
+                double litros = Double.parseDouble(etLitros.getText().toString());
+                double total = Double.parseDouble(etTotal.getText().toString());
+                int km = Integer.parseInt(etKm.getText().toString());
+                if (km == kmMax) {
+                    actualizarKM = false;
+                }
+                carga = new CargaCombustible(fecha, km, litros, total, actualizarKM);
 
-        carga = new CargaCombustible(fecha, km, litros, total, actualizarKM);
         return carga;
     }
+
+    public boolean validarInputs(){
+        boolean ok = true;
+
+        String temp = etFecha.getText().toString();
+        if(temp.length() == 0); {
+            etFecha.setError("Este campo es obligatorio.");
+            ok = false;
+        }
+
+        if(TextUtils.isEmpty(etLitros.getText().toString())) {
+            etLitros.setError("Este campo es obligatorio.");
+            ok = false;
+        }
+
+        if(TextUtils.isEmpty(etTotal.getText().toString())) {
+            etTotal.setError("Este campo es obligatorio.");
+            ok = false;
+        }
+
+        if(TextUtils.isEmpty(etKm.getText().toString())) {
+            etKm.setError("Este campo es obligatorio.");
+            ok = false;
+        }
+
+        return ok;
+    }
+
+
 }
