@@ -7,11 +7,7 @@ public class Auto {
     private String tipo;
     private String chasis;
     private String motor;
-    private int kmInicial;
 
-    public int getKmInicial() {
-        return kmInicial;
-    }
 
     public String getPatente() {
         return patente;
@@ -37,14 +33,13 @@ public class Auto {
         return motor;
     }
 
-    public Auto(String patente, String marca, String modelo, String tipo, String chasis, String motor, int kmInicial){
+    public Auto(String patente, String marca, String modelo, String tipo, String chasis, String motor){
         this.patente=patente;
         this.marca=marca;
         this.modelo=modelo;
         this.tipo=tipo;
         this.chasis=chasis;
         this.motor=motor;
-        this.kmInicial=kmInicial;
 
     }
 

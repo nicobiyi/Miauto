@@ -84,12 +84,6 @@ public class bdHelper {
 
             //Insertamos el registro en la base de datos
             bd.insert("Auto", null, nuevoRegistro);
-
-            //inserto el KmInicial en la bd
-            ContentValues otroRegistro = new ContentValues();
-            otroRegistro.put("fecha", "31/12/2020");
-            otroRegistro.put("kilometros", auto.getKmInicial());
-            bd.insert("Kilometraje", null, otroRegistro);
         }
     }
 
@@ -244,7 +238,7 @@ public class bdHelper {
         return id_km;
     }
 
-    private static void cargarKm(SQLiteDatabase bd, String fecha, int kilometraje) {
+    public static void cargarKm(SQLiteDatabase bd, String fecha, int kilometraje) {
         if (bd != null) {
             //Creamos el registro a insertar como objeto ContentValues
 

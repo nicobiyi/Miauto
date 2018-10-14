@@ -25,7 +25,6 @@ public class FormAutoActivity extends Activity {
     EditText etChasis;
     EditText etMotor;
     EditText etTipo;
-    EditText etKmInicial;
     Button btnRegistrarAuto;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
@@ -44,7 +43,6 @@ public class FormAutoActivity extends Activity {
         etChasis = (EditText)findViewById(R.id.etChasis);
         etMotor = (EditText)findViewById(R.id.etMotor);
         etTipo = (EditText)findViewById(R.id.etTipo);
-        etKmInicial = (EditText)findViewById(R.id.etKmInicial);
         btnRegistrarAuto = (Button)findViewById(R.id.btnRegistrarAuto);
         btnRegistrarAuto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +54,7 @@ public class FormAutoActivity extends Activity {
                     String chasis= etChasis.getText().toString();
                     String motor= etMotor.getText().toString();
                     String tipo= etTipo.getText().toString();
-                    int km=  Integer.parseInt(etKmInicial.getText().toString());
-                    Auto auto = new Auto(patente, marca, modelo, tipo, chasis, motor, km);
+                    Auto auto = new Auto(patente, marca, modelo, tipo, chasis, motor);
                     bdHelper.crearAuto(bd, auto);
                     Toast.makeText(getApplicationContext(),"Auto creado correctamente!",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(FormAutoActivity.this, MenuActivity.class);

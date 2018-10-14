@@ -161,22 +161,4 @@
         tools:layout_editor_absoluteX="123dp"
         tools:layout_editor_absoluteY="399dp" />
 
-    <TextView
-        android:id="@+id/tvKmInicial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etChasis"
-        android:layout_marginTop="14dp"
-        android:layout_toEndOf="@+id/tvMotor"
-        android:text="Kilometraje" />
-
-    <EditText
-        android:id="@+id/etKmInicial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/etMotor"
-        android:layout_alignParentEnd="true"
-        android:ems="10"
-        android:hint="33990"
-        android:inputType="textPersonName" />
 </RelativeLayout>
