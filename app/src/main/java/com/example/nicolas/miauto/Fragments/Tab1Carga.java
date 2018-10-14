@@ -65,7 +65,7 @@ public class Tab1Carga extends Fragment {
         //autocompleto con la fecha de hoy la fecha
         fechaActual = Fechador.dameFechaActual();
         etFecha.setText(fechaActual);
-
+        etLitros.requestFocus();
         etFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +79,7 @@ public class Tab1Carga extends Fragment {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month++;
                         etFecha.setText(dayOfMonth + "/" + month + "/" + year);
+                        etLitros.requestFocus();
                     }
                 }, anio, mes, dia);
                 dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
