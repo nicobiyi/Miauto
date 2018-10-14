@@ -2,6 +2,7 @@ package com.example.nicolas.miauto.Activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,6 +25,7 @@ public class MenuActivity extends Activity {
     Button btnNeumaticos;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
+    private boolean error = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +86,6 @@ public class MenuActivity extends Activity {
         int hayKm = bdHelper.dameKilometrajeMaximo(bd);
         if (hayKm == 0){
             popupKm();
-        } else {
-            Toast.makeText(getApplicationContext(), "Recuerde actualizar sus KM luego", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -100,13 +100,18 @@ public class MenuActivity extends Activity {
         final EditText edKm = (EditText) viewInflated.findViewById(R.id.editar);
 
         edKm.requestFocus();
+        if (error==true){
+            edKm.setError("¡Error!");
+            edKm.setHint("Campo obligatorio la primera vez");
+        }
 
         builder.setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String kms = edKm.getText().toString().trim();
                 if (kms.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "Por favor, ingrese un kilometraje", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Debe ingresar un kilometraje", Toast.LENGTH_SHORT).show();
+                    error = true;
                     popupKm();
                 } else {
                     int kilometraje = Integer.parseInt(kms);
@@ -115,13 +120,14 @@ public class MenuActivity extends Activity {
                 }
             }
         });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(), "Debe ingresar un kilometraje", Toast.LENGTH_SHORT).show();
-                popupKm();
-            }
-        });
+
+       builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+           @Override
+           public void onCancel(DialogInterface dialog) {
+               error = true;
+               popupKm();
+                         }
+       });
         AlertDialog dialog = builder.create();
         dialog.show();
     }

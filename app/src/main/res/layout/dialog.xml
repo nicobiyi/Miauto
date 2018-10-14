@@ -5,11 +5,14 @@
 
 
     <EditText
+        android:id="@+id/editar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:focusable="true"
         android:hint="123456"
-        android:id="@+id/editar"
-        android:focusable="true"/>
+        android:numeric="integer"
+        android:password="false"
+        android:phoneNumber="true" />
 
 </LinearLayout>

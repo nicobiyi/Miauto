@@ -155,16 +155,16 @@ public class FormAutoActivity extends Activity {
             etModelo.setError("Este campo es obligatorio.");
             ok= false;
         }
-        texto = etChasis.getText().toString();
-        if(TextUtils.isEmpty(texto)) {
-            etChasis.setError("Este campo es obligatorio.");
-            ok= false;
-        }
-        texto = etMotor.getText().toString();
-        if(TextUtils.isEmpty(texto)) {
-            etMotor.setError("Este campo es obligatorio.");
-            ok= false;
-        }
+        //texto = etChasis.getText().toString();
+        //if(TextUtils.isEmpty(texto)) {
+            //etChasis.setError("Este campo es obligatorio.");
+            //ok= false;
+        //}
+        //texto = etMotor.getText().toString();
+        //if(TextUtils.isEmpty(texto)) {
+            //etMotor.setError("Este campo es obligatorio.");
+            //ok= false;
+        //}
         texto = etTipo.getText().toString();
         if(TextUtils.isEmpty(texto)) {
             etTipo.setError("Este campo es obligatorio.");
