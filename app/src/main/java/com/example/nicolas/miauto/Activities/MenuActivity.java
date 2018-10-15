@@ -24,6 +24,8 @@ public class MenuActivity extends Activity {
     ImageView btnEstacionamiento;
     ImageView btnCombustible;
     ImageView btnNeumaticos;
+    ImageView btnInfoAuto;
+    ImageView btnService;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
     private boolean error = false;
@@ -42,6 +44,8 @@ public class MenuActivity extends Activity {
         btnEstacionamiento = (ImageView) findViewById(R.id.btnEstacionamiento);
         btnCombustible = (ImageView) findViewById(R.id.btnCombustible);
         btnNeumaticos = (ImageView) findViewById(R.id.btnNeumaticos);
+        btnService = (ImageView) findViewById(R.id.btnService);
+        btnInfoAuto = (ImageView) findViewById(R.id.btnInfoAuto);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         btnEstacionamiento.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +69,20 @@ public class MenuActivity extends Activity {
                 startActivity(intent);
             }
         });
+        btnService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+        btnInfoAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         actualizarKm();
+
     }
 
     @Override

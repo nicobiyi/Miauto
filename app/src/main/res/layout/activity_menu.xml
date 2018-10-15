@@ -25,9 +25,9 @@
         android:id="@+id/btnNeumaticos"
         android:layout_width="105dp"
         android:layout_height="99dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btnCombustible"
+        android:layout_marginEnd="122dp"
         android:src="@drawable/aire"
         android:text="Neumaticos"
         tools:layout_editor_absoluteX="149dp"
@@ -35,13 +35,32 @@
 
     <ImageView
         android:id="@+id/btnEstacionamiento"
-        android:layout_width="101dp"
-        android:layout_height="102dp"
+        android:layout_width="92dp"
+        android:layout_height="96dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/btnCombustible"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="12dp"
         android:src="@drawable/parkin"
         android:text="Estacionamiento"
         tools:layout_editor_absoluteX="129dp"
         tools:layout_editor_absoluteY="306dp" />
+
+    <ImageView
+        android:id="@+id/btnService"
+        android:layout_width="116dp"
+        android:layout_height="115dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btnCombustible"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/service" />
+
+    <ImageView
+        android:id="@+id/btnInfoAuto"
+        android:layout_width="102dp"
+        android:layout_height="103dp"
+        android:layout_alignTop="@+id/btnService"
+        android:layout_marginStart="-122dp"
+        android:layout_toEndOf="@+id/btnNeumaticos"
+        android:src="@drawable/info" />
+
 </RelativeLayout>
