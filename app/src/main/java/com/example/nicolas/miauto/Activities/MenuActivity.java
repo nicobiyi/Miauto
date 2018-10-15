@@ -72,13 +72,13 @@ public class MenuActivity extends Activity {
         btnService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getApplicationContext(), "Proximamente...", Toast.LENGTH_SHORT).show();
             }
         });
         btnInfoAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getApplicationContext(), "Proximamente...", Toast.LENGTH_SHORT).show();
             }
         });
         actualizarKm();
