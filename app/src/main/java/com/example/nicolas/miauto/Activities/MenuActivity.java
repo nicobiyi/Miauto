@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
@@ -20,9 +21,9 @@ import com.example.nicolas.miauto.Genericos.Fechador;
 import com.example.nicolas.miauto.R;
 
 public class MenuActivity extends Activity {
-    Button btnEstacionamiento;
-    Button btnCombustible;
-    Button btnNeumaticos;
+    ImageView btnEstacionamiento;
+    ImageView btnCombustible;
+    ImageView btnNeumaticos;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
     private boolean error = false;
@@ -38,9 +39,9 @@ public class MenuActivity extends Activity {
             startActivity(intent);
         }
         setTitle("Miauto - " + bdHelper.damePatente(bd));
-        btnEstacionamiento = (Button) findViewById(R.id.btnEstacionamiento);
-        btnCombustible = (Button) findViewById(R.id.btnCombustible);
-        btnNeumaticos = (Button) findViewById(R.id.btnNeumaticos);
+        btnEstacionamiento = (ImageView) findViewById(R.id.btnEstacionamiento);
+        btnCombustible = (ImageView) findViewById(R.id.btnCombustible);
+        btnNeumaticos = (ImageView) findViewById(R.id.btnNeumaticos);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         btnEstacionamiento.setOnClickListener(new View.OnClickListener() {

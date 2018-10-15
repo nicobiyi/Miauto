@@ -10,8 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
@@ -21,9 +22,10 @@ import com.example.nicolas.miauto.R;
 
 public class GarageActivity extends Activity {
 
-    Button btnAuto;
+    ImageView btnAuto;
     ImageButton btnBorrarAuto;
     boolean hayAuto;
+    TextView tvPatente;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
 
@@ -34,11 +36,12 @@ public class GarageActivity extends Activity {
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
         hayAuto = bdHelper.hayAuto(bd);
-        btnAuto = (Button) findViewById(R.id.btnSelectAuto);
+        btnAuto = (ImageView) findViewById(R.id.btnSelectAuto);
         btnBorrarAuto = (ImageButton) findViewById(R.id.btnBorrarAuto);
+        tvPatente = (TextView)findViewById(R.id.tvPatente);
         if (hayAuto){
             btnBorrarAuto.setVisibility(View.VISIBLE);
-            btnAuto.setText(bdHelper.damePatente(bd));
+            tvPatente.setText(bdHelper.damePatente(bd));
             btnAuto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -48,7 +51,7 @@ public class GarageActivity extends Activity {
                 }
             });
         } else {
-            btnAuto.setText("Crear Auto...");
+            tvPatente.setText("Crear Auto...");
             btnAuto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,7 +91,7 @@ public class GarageActivity extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 bdHelper.eliminarAuto(bd);
                 btnBorrarAuto.setVisibility(View.INVISIBLE);
-                btnAuto.setText("Crear Auto...");
+                tvPatente.setText("Crear Auto...");
                 Toast.makeText(getApplicationContext(),"Auto eliminado correctamente!",Toast.LENGTH_LONG).show();
                 btnAuto.setOnClickListener(new View.OnClickListener() {
                     @Override

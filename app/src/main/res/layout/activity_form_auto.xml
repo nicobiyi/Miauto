@@ -116,18 +116,18 @@
         tools:layout_editor_absoluteY="98dp" />
 
     <TextView
-        android:id="@+id/tvPatente"
+        android:id="@+id/tvPatente2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/tvTipo"
-        android:layout_alignTop="@+id/etPatente"
+        android:layout_alignTop="@+id/etPatente2"
         android:gravity=""
         android:text="Patente"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="41dp" />
 
     <EditText
-        android:id="@+id/etPatente"
+        android:id="@+id/etPatente2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
