@@ -43,7 +43,9 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".Activities.CombustibleActivity"
-            android:label="@string/title_activity_combustible"></activity>
+            android:label="@string/title_activity_combustible" />
+        <activity android:name=".Activities.ServiceActivity" />
+        <activity android:name=".Activities.InfoAutoActivity"></activity>
     </application>
 
 </manifest>

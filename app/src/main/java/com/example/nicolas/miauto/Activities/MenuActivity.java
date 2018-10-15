@@ -72,7 +72,7 @@ public class MenuActivity extends Activity {
         btnService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
         btnInfoAuto.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +121,7 @@ public class MenuActivity extends Activity {
         if (error==true){
             edKm.setError("¡Error!");
             edKm.setHint("Campo obligatorio la primera vez");
+            Toast.makeText(getApplicationContext(), "Debe ingresar un kilometraje", Toast.LENGTH_SHORT).show();
         }
 
         builder.setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
@@ -128,7 +129,6 @@ public class MenuActivity extends Activity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 String kms = edKm.getText().toString().trim();
                 if (kms.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "Debe ingresar un kilometraje", Toast.LENGTH_SHORT).show();
                     error = true;
                     popupKm();
                 } else {
