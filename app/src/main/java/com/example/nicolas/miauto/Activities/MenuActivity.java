@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,16 +73,18 @@ public class MenuActivity extends Activity {
         btnService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Proximamente...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MenuActivity.this, ServiceActivity.class);
+                startActivity(intent);
             }
         });
         btnInfoAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Proximamente...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MenuActivity.this, InfoAutoActivity.class);
+                startActivity(intent);
             }
         });
-        actualizarKm();
+        popupKm();
 
     }
 
@@ -100,22 +103,18 @@ public class MenuActivity extends Activity {
         startActivity(intent);
         return true;
     }
-    private void actualizarKm() {
-        int hayKm = bdHelper.dameKilometrajeMaximo(bd);
-        if (hayKm == 0){
-            popupKm();
-        }
-    }
 
     private void popupKm() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        int hayKm = bdHelper.dameKilometrajeMaximo(bd);
+        if (hayKm == 0){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Por favor, ingrese su kilometraje actual:");
 
         View viewInflated = LayoutInflater.from(this).inflate(R.layout.dialog, null);
         builder.setView(viewInflated);
 
-        final EditText edKm = (EditText) viewInflated.findViewById(R.id.editar);
+        final EditText edKm = (EditText) viewInflated.findViewById(R.id.dialogEditar);
 
         edKm.requestFocus();
         if (error==true){
@@ -123,6 +122,30 @@ public class MenuActivity extends Activity {
             edKm.setHint("Campo obligatorio la primera vez");
             Toast.makeText(getApplicationContext(), "Debe ingresar un kilometraje", Toast.LENGTH_SHORT).show();
         }
+        edKm.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    String kms = edKm.getText().toString().trim();
+                    if (kms.length() == 0) {
+                        error = true;
+                        Toast.makeText(getApplicationContext(), "Debe ingresar un kilometraje", Toast.LENGTH_SHORT).show();
+                        edKm.setHint("Campo obligatorio la primera vez");
+                        edKm.setError("¡Error!");
+                    } else {
+                        error = false;
+                        int kilometraje = Integer.parseInt(kms);
+                        bdHelper.cargarKm(bd, Fechador.dameFechaActual(), kilometraje);
+                        Toast.makeText(getApplicationContext(), "Kilometraje ingresado correctamente", Toast.LENGTH_SHORT).show();
+                        finish();
+                        Intent intent = new Intent(MenuActivity.this, MenuActivity.class);
+                        startActivity(intent);
+                    }
+                }
+
+                return false;
+            }
+        });
 
         builder.setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
             @Override
@@ -132,6 +155,7 @@ public class MenuActivity extends Activity {
                     error = true;
                     popupKm();
                 } else {
+                    error = false;
                     int kilometraje = Integer.parseInt(kms);
                     bdHelper.cargarKm(bd, Fechador.dameFechaActual(), kilometraje);
                     Toast.makeText(getApplicationContext(), "Kilometraje ingresado correctamente", Toast.LENGTH_SHORT).show();
@@ -148,5 +172,7 @@ public class MenuActivity extends Activity {
        });
         AlertDialog dialog = builder.create();
         dialog.show();
+
+        }
     }
 }

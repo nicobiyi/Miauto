@@ -37,7 +37,7 @@ public class FormAutoActivity extends Activity {
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        etPatente = (EditText)findViewById(R.id.etPatente2);
+        etPatente = (EditText)findViewById(R.id.etPatente3);
         etPatente.requestFocus();
         etMarca = (EditText)findViewById(R.id.etMarca);
         etModelo = (EditText)findViewById(R.id.etModelo);

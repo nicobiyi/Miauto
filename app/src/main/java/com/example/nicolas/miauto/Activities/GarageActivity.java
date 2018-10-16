@@ -9,8 +9,9 @@ import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,9 +24,9 @@ import com.example.nicolas.miauto.R;
 public class GarageActivity extends Activity {
 
     ImageView btnAuto;
-    ImageButton btnBorrarAuto;
     boolean hayAuto;
     TextView tvPatente;
+    private MenuItem itEliminarAuto;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
 
@@ -37,10 +38,8 @@ public class GarageActivity extends Activity {
         bd = carsHelper.getWritableDatabase();
         hayAuto = bdHelper.hayAuto(bd);
         btnAuto = (ImageView) findViewById(R.id.btnSelectAuto);
-        btnBorrarAuto = (ImageButton) findViewById(R.id.btnBorrarAuto);
         tvPatente = (TextView)findViewById(R.id.tvPatente);
         if (hayAuto){
-            btnBorrarAuto.setVisibility(View.VISIBLE);
             tvPatente.setText(bdHelper.damePatente(bd));
             btnAuto.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -61,12 +60,6 @@ public class GarageActivity extends Activity {
             });
         }
 
-        btnBorrarAuto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                borrarAuto();
-            }
-        });
         //chequea permisos GPS
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -76,7 +69,29 @@ public class GarageActivity extends Activity {
                     1);
         }
     }
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_garage, menu);
+        itEliminarAuto = menu.findItem(R.id.itEliminarAuto);
+        if (hayAuto){
+            itEliminarAuto.setVisible(true);
+        } else {
+            itEliminarAuto.setVisible(false);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.itEliminarAuto:
+                borrarAuto();
+                break;
+            case R.id.itSalir:
+                finishAffinity();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     private void borrarAuto() {
@@ -90,8 +105,8 @@ public class GarageActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 bdHelper.eliminarAuto(bd);
-                btnBorrarAuto.setVisibility(View.INVISIBLE);
                 tvPatente.setText("Crear Auto...");
+                itEliminarAuto.setVisible(false);
                 Toast.makeText(getApplicationContext(),"Auto eliminado correctamente!",Toast.LENGTH_LONG).show();
                 btnAuto.setOnClickListener(new View.OnClickListener() {
                     @Override

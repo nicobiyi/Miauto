@@ -69,6 +69,26 @@ public class bdHelper {
     return hay;
     }
 
+    public static Auto dameAuto(SQLiteDatabase db){
+        Auto auto=null;
+        Cursor cursor = db.rawQuery("select * from Auto", null);
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                String patente = cursor.getString(cursor.getColumnIndex("patente"));
+                String marca = cursor.getString(cursor.getColumnIndex("marca"));
+                String modelo = cursor.getString(cursor.getColumnIndex("modelo"));
+                String tipo = cursor.getString(cursor.getColumnIndex("tipo"));
+                String chasis = cursor.getString(cursor.getColumnIndex("chasis"));
+                String motor = cursor.getString(cursor.getColumnIndex("motor"));
+                auto = new Auto(patente, marca, modelo, tipo, chasis, motor);
+                cursor.moveToNext();
+            }
+        }
+        return auto;
+    }
+
     public static void crearAuto(SQLiteDatabase bd, Auto auto) {
         //Si hemos abierto correctamente la base de datos
         if (bd != null) {
@@ -97,6 +117,10 @@ public class bdHelper {
         sql = "DELETE FROM Combustible;";
         bd.execSQL(sql);
         sql = "DELETE FROM Kilometraje;";
+        bd.execSQL(sql);
+    }
+    public static void eliminarDatosAuto(SQLiteDatabase bd){
+        String sql = "DELETE FROM Auto;";
         bd.execSQL(sql);
     }
 
