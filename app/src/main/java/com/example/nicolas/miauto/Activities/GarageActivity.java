@@ -40,6 +40,7 @@ public class GarageActivity extends Activity {
         btnAuto = (ImageView) findViewById(R.id.btnSelectAuto);
         tvPatente = (TextView)findViewById(R.id.tvPatente);
         if (hayAuto){
+            bd = bdHelper.verificarConexionSL(bd, GarageActivity.this);
             tvPatente.setText(bdHelper.damePatente(bd));
             btnAuto.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -68,6 +69,7 @@ public class GarageActivity extends Activity {
                             {Manifest.permission.ACCESS_FINE_LOCATION},
                     1);
         }
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,7 +97,7 @@ public class GarageActivity extends Activity {
 
 
     private void borrarAuto() {
-
+        bd = bdHelper.verificarConexionSL(bd, GarageActivity.this);
         AlertDialog.Builder builder = new AlertDialog.Builder(GarageActivity.this);
         builder.setMessage("Está seguro que desea borrar este auto?")
                 .setTitle("Patente: " + bdHelper.damePatente(bd));
@@ -104,6 +106,7 @@ public class GarageActivity extends Activity {
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                bd = bdHelper.verificarConexionLE(bd, GarageActivity.this);
                 bdHelper.eliminarAuto(bd);
                 tvPatente.setText("Crear Auto...");
                 itEliminarAuto.setVisible(false);
