@@ -242,7 +242,6 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
-        bd.close();
         return existe;
     }
 
