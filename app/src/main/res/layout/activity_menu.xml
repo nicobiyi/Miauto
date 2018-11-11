@@ -17,7 +17,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
         android:src="@drawable/combustible"
-        android:text="Combustible"
         tools:layout_editor_absoluteX="146dp"
         tools:layout_editor_absoluteY="69dp" />
 
@@ -29,7 +28,6 @@
         android:layout_alignTop="@+id/btnCombustible"
         android:layout_marginEnd="122dp"
         android:src="@drawable/aire"
-        android:text="Neumaticos"
         tools:layout_editor_absoluteX="149dp"
         tools:layout_editor_absoluteY="188dp" />
 
@@ -41,7 +39,6 @@
         android:layout_alignTop="@+id/btnCombustible"
         android:layout_marginEnd="12dp"
         android:src="@drawable/parkin"
-        android:text="Estacionamiento"
         tools:layout_editor_absoluteX="129dp"
         tools:layout_editor_absoluteY="306dp" />
 

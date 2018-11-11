@@ -170,26 +170,6 @@ public class bdHelper {
         return list;
     }
 
-    /*public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado) {
-        //Si hemos abierto correctamente la base de datos
-        if (bd != null) {
-            //Creamos el registro a insertar como objeto ContentValues
-           regularizarHistorial(bd);
-            ContentValues nuevoRegistro = new ContentValues();
-            // El ID es auto incrementable como declaramos en nuestro CarsSQLiteHelper
-            //nuevoRegistro.put("id", 0);
-            nuevoRegistro.put("fecha", nuevoInflado.getFecha());
-            nuevoRegistro.put("ruedadd", nuevoInflado.getRuedadd());
-            nuevoRegistro.put("ruedadi", nuevoInflado.getRuedadi());
-            nuevoRegistro.put("ruedatd", nuevoInflado.getRuedatd());
-            nuevoRegistro.put("ruedati", nuevoInflado.getRuedati());
-            nuevoRegistro.put("ruedaau", nuevoInflado.getRuedaau());
-
-            //Insertamos el registro en la base de datos
-            bd.insert("Neumaticos", null, nuevoRegistro);
-        }
-    }*/
-
     public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado) {
         //Si hemos abierto correctamente la base de datos
         if (bd != null) {
@@ -319,7 +299,6 @@ public class bdHelper {
             bd.insert("Kilometraje", null, nuevoRegistro);
         }
     }
-
 
     public static double dameUltimaCarga(SQLiteDatabase bd) {
         double total = -1;

@@ -72,23 +72,11 @@ public class NeumaticosActivity extends Activity {
         changeFragment(currentFragment);
         return super.onOptionsItemSelected(item);
     }
-    /*
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            Intent intent = new Intent(NeumaticosActivity.this, MenuActivity.class);
-            startActivity(intent);
-            return true;
-        }*/
-    //cambia de fragment
+
     private void changeFragment(Fragment fragment) {
         getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
-   /* public void cargarInflado(Inflado inflado){
-        bdHelper.crearInflado(bd, inflado);
-        NuevoInflado.crearInflado(bd, inflado);
-        Toast.makeText(getApplicationContext(),"Nuevo inflado guardado!",Toast.LENGTH_LONG).show();
 
-    }*/
 
 }
