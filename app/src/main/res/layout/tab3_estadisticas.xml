@@ -1,45 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/negro"
     android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvTituloEstadistica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="ESTADISTICAS"
+        android:textSize="30dp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/tvTotalMensual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total Mensual"
-        android:layout_marginEnd="30dp"
-        android:layout_below="@+id/etTotalMensual"
-        android:layout_toStartOf="@+id/etTotalMensual" />
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="24dp"
+        android:layout_below="@+id/tvTituloEstadistica" />
 
     <TextView
-        android:id="@+id/tvLitrosMensuales"
+        android:id="@+id/tvTotalMensualEstadistica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="93dp"
-        android:text="Litros"
-        android:layout_below="@+id/tvTotalMensual"
-        android:layout_alignStart="@+id/tvTotalMensual" />
-
-    <TextView
-        android:id="@+id/etLitrosMensuales"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_alignBaseline="@+id/tvLitrosMensuales"
-        android:layout_alignBottom="@+id/tvLitrosMensuales"
-        android:layout_alignStart="@+id/etTotalMensual" />
-
-    <TextView
-        android:id="@+id/etTotalMensual"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp" />
+        android:text="$ 2049,12"
+        android:textSize="24dp"
+        android:layout_alignTop="@id/tvTotalMensual"
+        android:layout_toRightOf="@id/tvTotalMensual"
+        android:layout_marginLeft="20dp"/>
 
 
 </RelativeLayout>

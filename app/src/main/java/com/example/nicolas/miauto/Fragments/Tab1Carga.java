@@ -2,26 +2,33 @@ package com.example.nicolas.miauto.Fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.nicolas.miauto.Activities.CombustibleActivity;
 import com.example.nicolas.miauto.Clases.CargaCombustible;
 import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.Genericos.Fechador;
 import com.example.nicolas.miauto.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
 
 /**
  * Created by Nicolas on 4/10/2018.
@@ -39,21 +46,25 @@ public class Tab1Carga extends Fragment {
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
     private String fechaActual;
+    private View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab1_carga, container, false);
+
+        rootView = inflater.inflate(R.layout.tab1x, container, false);
 
         /************************************************
          CODIGO PROPIO PARA CAPTURAR EL INPUT DEL USUARIO
          ************************************************/
-        final View myFragmentView = inflater.inflate(R.layout.tab1_carga, container, false);
+
+        final View myFragmentView = inflater.inflate(R.layout.tab1x, container, false);
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
 
         etFecha = (EditText) myFragmentView.findViewById(R.id.edFechaCargaCombustible);
         etLitros = (EditText) myFragmentView.findViewById(R.id.etLitros);
+        etLitros.requestFocus();
         etTotal = (EditText) myFragmentView.findViewById(R.id.etTotalCarga);
         etKm = (EditText) myFragmentView.findViewById(R.id.etKilometraje);
         btn = (Button) myFragmentView.findViewById(R.id.btnGuardarCarga);
@@ -61,6 +72,8 @@ public class Tab1Carga extends Fragment {
         //busco y autocompleto el Km mayor que tenga la bd
         kmMax = bdHelper.dameKilometrajeMaximo(bd);
         etKm.setText(Integer.toString(kmMax));
+
+
 
         //autocompleto con la fecha de hoy la fecha
         fechaActual = Fechador.dameFechaActual();
@@ -106,6 +119,15 @@ public class Tab1Carga extends Fragment {
                         bdHelper.guardarCargaCombustible(bd, nuevaCarga);
                         // Avisar al usuario que se guardo OK
                         Toast.makeText(getActivity().getApplicationContext(),"Carga de combustible realizada con éxito", Toast.LENGTH_LONG).show();
+
+                        //actualizar consulta de cargas en bd
+
+
+                        //simular click en fragment2
+                        Intent intent = new Intent(getActivity().getApplicationContext(), CombustibleActivity.class);
+                        intent.putExtra("Cargas", 1);
+                        startActivity(intent);
+
                     } catch (Exception e) {
                         Toast.makeText(getActivity().getApplicationContext(),"Error al cargar combustible", Toast.LENGTH_LONG).show();
 
@@ -180,5 +202,15 @@ public class Tab1Carga extends Fragment {
         return ok;
     }
 
+    private ArrayList<String> listarCargasString(List<CargaCombustible> listaCargas) {
+        ArrayList<String> lista;
+        lista = new ArrayList<>();
+
+        for ( CargaCombustible carga:listaCargas
+                ) {
+            lista.add(carga.toString());
+        }
+        return lista;
+    }
 
 }

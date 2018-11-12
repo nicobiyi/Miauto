@@ -23,8 +23,8 @@ import org.w3c.dom.Text;
 
 public class Tab3Estadisticas extends Fragment {
 
-    private TextView totalMensual;
-    private TextView ltsMensuales;
+   // private TextView totalMensual;
+    // private TextView ltsMensuales;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
 
@@ -35,16 +35,16 @@ public class Tab3Estadisticas extends Fragment {
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
 
-        totalMensual = (TextView) rootView.findViewById(R.id.etTotalMensual);
-        ltsMensuales = (TextView) rootView.findViewById(R.id.etLitrosMensuales);
+        //totalMensual = (TextView) rootView.findViewById(R.id.etTotalMensual);
+        //ltsMensuales = (TextView) rootView.findViewById(R.id.etLitrosMensuales);
 
 
         //String total = bdHelper.getGastoTotalMesActual(bd);
 
 
 
-        totalMensual.setText("$ 1000000");
-        ltsMensuales.setText("300 lts");
+        //totalMensual.setText("$ 1000000");
+        //ltsMensuales.setText("300 lts");
 
         return rootView;
     }

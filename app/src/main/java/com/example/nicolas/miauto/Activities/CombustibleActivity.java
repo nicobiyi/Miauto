@@ -49,6 +49,7 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -82,6 +83,17 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
                             .setTabListener(this));
         }
 
+        int vieneDelIntent = getIntent().getIntExtra("Cargas", 1);
+        if ( vieneDelIntent == 1){
+            getRoberto();
+        }
+
+
+    }
+
+    private Fragment getRoberto() {
+        Tab2DetallesCargas tab2 = new Tab2DetallesCargas();
+        return tab2;
     }
 
 
@@ -107,6 +119,7 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
+
     }
 
     @Override
@@ -115,6 +128,7 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
     }
 
 
@@ -131,6 +145,7 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
 
         @Override
         public Fragment getItem(int position) {
+
             switch (position){
                 case 0:
                     Tab1Carga tab1 = new Tab1Carga();
