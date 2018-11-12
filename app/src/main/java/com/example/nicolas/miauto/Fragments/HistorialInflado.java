@@ -9,18 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.Clases.Inflado;
 import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.R;
 
 import java.util.List;
 
-import static com.example.nicolas.miauto.BaseDeDatos.bdHelper.getNeumaticos;
-
 public class HistorialInflado extends Fragment {
 
     public HistorialInflado(){}
-
 
     ImageButton btnFecha1;
     ImageButton btnFecha2;
@@ -28,7 +26,6 @@ public class HistorialInflado extends Fragment {
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
     private List<Inflado> inflados;
-    String idFecha;
     TextView textFecha1;
     TextView textFecha2;
     TextView textFecha3;
@@ -39,7 +36,7 @@ public class HistorialInflado extends Fragment {
     TextView au;
     TextView textAviso;
     TextView textKms;
-
+    String TEXTVACIO = "--";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +44,7 @@ public class HistorialInflado extends Fragment {
         final View myFragmentView = inflater.inflate(R.layout.historial_inflado, container, false);
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getReadableDatabase();
-        inflados = getNeumaticos(bd);
+        inflados = bdHelper.getNeumaticos(bd);
         dd = (TextView) myFragmentView.findViewById(R.id.tvPressValueddH);
         di = (TextView) myFragmentView.findViewById(R.id.tvPressValuediH);
         td = (TextView) myFragmentView.findViewById(R.id.tvPressValuetdH);
@@ -68,27 +65,21 @@ public class HistorialInflado extends Fragment {
         btnFecha1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  if(inflados.get(2)!=null){
                     setInfladoVista(myFragmentView,inflados.get(2));
-               // }
             }
         });
 
         btnFecha2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // if(inflados.get(1)!=null){
                     setInfladoVista(myFragmentView,inflados.get(1));
-               // }
             }
         });
 
         btnFecha3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  if(inflados.get(0)!=null){
                     setInfladoVista(myFragmentView, inflados.get(0));
-                //}
             }
         });
 
@@ -119,12 +110,12 @@ return myFragmentView;
                 btnFecha2.setVisibility(View.INVISIBLE);
                 textFecha3.setVisibility(View.INVISIBLE);
                 btnFecha3.setVisibility(View.INVISIBLE);
-                dd.setText("--");
-                di.setText("--");
-                td.setText("--");
-                ti.setText("--");
-                au.setText("--");
-                textKms.setText("--");
+                dd.setText(TEXTVACIO);
+                di.setText(TEXTVACIO);
+                td.setText(TEXTVACIO);
+                ti.setText(TEXTVACIO);
+                au.setText(TEXTVACIO);
+                textKms.setText(TEXTVACIO);
                 textAviso.setVisibility(View.VISIBLE);
                 break;
             case 1 :

@@ -4,5 +4,21 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_combustible">CombustibleActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="section_format">Hello World from section</string>
+    <string name="tipo">Tipo</string>
+    <string name="text">Text</string>
+    <string name="text_motor">Motor N°</string>
+    <string name="text_chasis">Chasis Nº</string>
+    <string name="text_modelo">Modelo</string>
+    <string name="text_marca">Marca</string>
+    <string name="text_patente">Patente</string>
+    <string name="btn_registrar_auto">Registrar Auto</string>
+    <string name="btn_actualizar_info">Actualizar informacón</string>
+    <string name="number_30">30</string>
+    <string name="text_kms">Kilometros</string>
+    <string name="text_fecha">fecha</string>
+    <string name="aviso_sin_inflados">NO HAY INFLADOS</string>
+
+
+
 </resources>

@@ -1,47 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nicolas.miauto.Activities.FormAutoActivity">
-
-    <TextView
-        android:id="@+id/tvMotor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/etMotor"
-        android:layout_marginStart="11dp"
-        android:gravity=""
-        android:text="Motor N°"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="327dp" />
-
-    <EditText
-        android:id="@+id/etMotor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="128dp"
-        android:ems="10"
-        android:hint="AKY876578"
-        android:inputType="text"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="317dp" />
-
-    <TextView
-        android:id="@+id/tvTipo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvChasis"
-        android:layout_alignTop="@+id/etTipo"
-        android:gravity=""
-        android:text="Tipo"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="213dp" />
+    tools:context=".Activities.InfoAutoActivity">
 
     <EditText
         android:id="@+id/etTipo"
@@ -49,82 +12,131 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="57dp"
+        android:layout_marginBottom="75dp"
         android:ems="10"
-        android:hint="Sedan 5 Puertas"
         android:inputType="text"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="204dp" />
+        android:hint="Sedan 5 Puertas"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="40dp" />
 
     <TextView
-        android:id="@+id/tvChasis"
+        android:id="@+id/tvTipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvModelo"
-        android:layout_centerVertical="true"
-        android:gravity=""
-        android:text="Chasis N°"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="275dp" />
+        android:layout_alignBottom="@+id/etTipo"
+        android:layout_alignStart="@+id/tvMarca"
+        android:text="@string/tipo"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="56dp" />
 
     <EditText
-        android:id="@+id/etChasis"
+        android:id="@+id/etMotor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/tvChasis"
+        android:layout_marginBottom="129dp"
         android:ems="10"
-        android:hint="8WAPM45ZE3657654"
+        android:hint="AKY876578"
         android:inputType="text"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="260dp" />
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="40dp" />
 
     <TextView
-        android:id="@+id/tvModelo"
+        android:id="@+id/tvMotor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tvMarca"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="179dp"
-        android:gravity=""
-        android:text="Modelo"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="157dp" />
+        android:layout_alignStart="@+id/tvTipo"
+        android:layout_alignTop="@+id/etMotor"
+        android:text="@string/text_motor"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="56dp" />
 
     <EditText
         android:id="@+id/etModelo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/tvModelo"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="201dp"
         android:ems="10"
-        android:hint="Suran 1.6 5D 758"
         android:inputType="text"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="145dp" />
+        android:hint="Suran 1.6 5D 758"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="40dp" />
+
+    <TextView
+        android:id="@+id/tvModelo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etModelo"
+        android:layout_alignStart="@+id/tvTipo"
+        android:text="@string/text_modelo"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="56dp" />
 
     <TextView
         android:id="@+id/tvMarca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etMarca"
+        android:layout_alignStart="@+id/tvPatente2"
+        android:text="@string/text_marca"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <EditText
+        android:id="@+id/etChasis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="197dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="8WAPM45ZE3657654"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="40dp" />
+
+    <EditText
+        android:id="@+id/etMarca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="103dp"
-        android:layout_toEndOf="@+id/tvMotor"
-        android:gravity=""
-        android:text="Marca"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="98dp" />
+        android:layout_marginTop="119dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="VolksWagen"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="40dp" />
 
     <TextView
         android:id="@+id/tvPatente2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/etPatente3"
-        android:layout_toEndOf="@+id/tvMotor"
-        android:gravity=""
-        android:text="Patente"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="41dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/etPatente3"
+        android:layout_marginStart="46dp"
+        android:text="@string/text_patente"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <TextView
+        android:id="@+id/tvChasis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etChasis"
+        android:layout_alignStart="@+id/tvTipo"
+        android:text="@string/text_chasis"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="56dp" />
 
     <EditText
         android:id="@+id/etPatente3"
@@ -132,33 +144,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="46dp"
         android:ems="10"
+        android:inputType="text"
         android:hint="ABC123"
-        android:inputType="text"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="30dp" />
-
-    <EditText
-        android:id="@+id/etMarca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/tvMarca"
-        android:ems="10"
-        android:hint="VolksWagen"
-        android:inputType="text"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="87dp" />
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="40dp" />
 
     <Button
         android:id="@+id/btnRegistrarAuto"
-        android:layout_width="match_parent"
+        android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Registrar Auto"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="399dp" />
-
+        android:layout_marginStart="-153dp"
+        android:layout_toEndOf="@+id/tvChasis"
+        android:text="@string/btn_registrar_auto" />
 </RelativeLayout>

@@ -56,6 +56,7 @@ public class FormAutoActivity extends Activity {
                     String motor= etMotor.getText().toString();
                     String tipo= etTipo.getText().toString();
                     Auto auto = new Auto(patente, marca, modelo, tipo, chasis, motor);
+                    bd = bdHelper.verificarConexionLE(bd, FormAutoActivity.this);
                     bdHelper.crearAuto(bd, auto);
                     Toast.makeText(getApplicationContext(),"Auto creado correctamente!",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(FormAutoActivity.this, MenuActivity.class);
@@ -72,6 +73,7 @@ public class FormAutoActivity extends Activity {
     protected void onResume() {
         super.onResume();
         super.onResume();
+        bd = bdHelper.verificarConexionSL(bd, FormAutoActivity.this);
         if (bdHelper.hayAuto(bd)){
             Intent intent = new Intent(FormAutoActivity.this, GarageActivity.class);
             startActivity(intent);
@@ -159,16 +161,6 @@ public class FormAutoActivity extends Activity {
             etModelo.setError("Este campo es obligatorio.");
             ok= false;
         }
-        //texto = etChasis.getText().toString();
-        //if(TextUtils.isEmpty(texto)) {
-            //etChasis.setError("Este campo es obligatorio.");
-            //ok= false;
-        //}
-        //texto = etMotor.getText().toString();
-        //if(TextUtils.isEmpty(texto)) {
-            //etMotor.setError("Este campo es obligatorio.");
-            //ok= false;
-        //}
         texto = etTipo.getText().toString();
         if(TextUtils.isEmpty(texto)) {
             etTipo.setError("Este campo es obligatorio.");

@@ -53,7 +53,9 @@ public class InfoAutoActivity extends Activity {
                     String motor= etMotor.getText().toString();
                     String tipo= etTipo.getText().toString();
                     Auto auto = new Auto(patente, marca, modelo, tipo, chasis, motor);
+                    bd = bdHelper.verificarConexionLE(bd, InfoAutoActivity.this);
                     bdHelper.eliminarDatosAuto(bd);
+                    bd = bdHelper.verificarConexionLE(bd, InfoAutoActivity.this);
                     bdHelper.crearAuto(bd, auto);
                     Toast.makeText(getApplicationContext(),"Auto modificado exitosamente!",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(InfoAutoActivity.this, MenuActivity.class);
@@ -90,6 +92,7 @@ public class InfoAutoActivity extends Activity {
     }
 
     private void cargarDatos() {
+        bd = bdHelper.verificarConexionSL(bd, InfoAutoActivity.this);
         Auto auto = bdHelper.dameAuto(bd);
         if (auto!=null){
             etMarca.setText(auto.getMarca());

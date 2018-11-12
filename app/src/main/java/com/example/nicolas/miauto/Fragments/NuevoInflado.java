@@ -42,7 +42,6 @@ public class NuevoInflado extends Fragment {
     private int kmsActual;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
-    private String fecha;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,14 +55,14 @@ public class NuevoInflado extends Fragment {
         kms = (EditText) myFragmentView.findViewById(R.id.etKilometrajeInf);
         kms.setText(String.format(String.valueOf(kmsActual)));
 
-        ImageButton btnUpdd = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpdd);
+        btnUpdd = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpdd);
         btnUpdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 subirPresion(R.id.tvPressValuedd, myFragmentView);
             }
         });
-        ImageButton btnUpdi = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpdi);
+        btnUpdi = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpdi);
         btnUpdi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,14 +70,14 @@ public class NuevoInflado extends Fragment {
                 //goToAttract();
             }
         });
-        ImageButton btnDowndd = (ImageButton) myFragmentView.findViewById(R.id.btnPressDowndd);
+        btnDowndd = (ImageButton) myFragmentView.findViewById(R.id.btnPressDowndd);
         btnDowndd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bajarPresion(R.id.tvPressValuedd, myFragmentView);
             }
         });
-        ImageButton btnDowndi = (ImageButton) myFragmentView.findViewById(R.id.btnPressDowndi);
+        btnDowndi = (ImageButton) myFragmentView.findViewById(R.id.btnPressDowndi);
         btnDowndi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,14 +85,14 @@ public class NuevoInflado extends Fragment {
                 //goToAttract();
             }
         });
-        ImageButton btnUptd = (ImageButton) myFragmentView.findViewById(R.id.btnPressUptd);
+        btnUptd = (ImageButton) myFragmentView.findViewById(R.id.btnPressUptd);
         btnUptd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 subirPresion(R.id.tvPressValuetd, myFragmentView);
             }
         });
-        ImageButton btnUpti = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpti);
+        btnUpti = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpti);
         btnUpti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,14 +101,14 @@ public class NuevoInflado extends Fragment {
             }
         });
 
-        ImageButton btnDowntd = (ImageButton) myFragmentView.findViewById(R.id.btnPressDowntd);
+        btnDowntd = (ImageButton) myFragmentView.findViewById(R.id.btnPressDowntd);
         btnDowntd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bajarPresion(R.id.tvPressValuetd, myFragmentView);
             }
         });
-        ImageButton btnDownti = (ImageButton) myFragmentView.findViewById(R.id.btnPressDownti);
+        btnDownti = (ImageButton) myFragmentView.findViewById(R.id.btnPressDownti);
         btnDownti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +117,7 @@ public class NuevoInflado extends Fragment {
             }
         });
 
-        ImageButton btnUpau = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpau);
+        btnUpau = (ImageButton) myFragmentView.findViewById(R.id.btnPressUpau);
         btnUpau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,14 +125,22 @@ public class NuevoInflado extends Fragment {
                 //goToAttract();
             }
         });
-        ImageButton btnDownau = (ImageButton) myFragmentView.findViewById(R.id.btnPressDownau);
+
+        btnUpau.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                subirPresion(R.id.tvPressValueau, myFragmentView);
+                return true;
+            }
+        });
+        btnDownau = (ImageButton) myFragmentView.findViewById(R.id.btnPressDownau);
         btnDownau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bajarPresion(R.id.tvPressValueau, myFragmentView);
             }
         });
-        ImageButton btnGuardar = (ImageButton) myFragmentView.findViewById(R.id.btnGuardarInflado);
+        btnGuardar = (ImageButton) myFragmentView.findViewById(R.id.btnGuardarInflado);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,14 +157,12 @@ public class NuevoInflado extends Fragment {
                         month++;
                         fecha[0] = dayOfMonth + "/" + month + "/" + year;
                         nuevoInflado = dameInflado(myFragmentView, fecha[0]);
-                        bdHelper.crearInflado(bd, nuevoInflado);
+                        bd = bdHelper.verificarConexionLE(bd, getActivity().getApplicationContext());
+                        bdHelper.crearInflado(bd, nuevoInflado, getActivity().getApplicationContext());
                         Toast.makeText(getActivity().getApplicationContext(),"Nuevo inflado guardado!",Toast.LENGTH_LONG).show();
                     }
                 }, anio, mes, dia);
                 dpd.show();
-
-
-
             }
         });
         return myFragmentView;
@@ -168,12 +173,16 @@ public class NuevoInflado extends Fragment {
     public void bajarPresion(int id, View view){
         texttemp = (TextView) view.findViewById(id);
         presion = damePresion(id, view);
-        texttemp.setText(String.format(String.valueOf(presion - 1)));
+        if (presion >0){
+            texttemp.setText(String.format(String.valueOf(presion - 1)));
+        }
     }
     public void subirPresion(int id, View view){
         texttemp = (TextView) view.findViewById(id);
         presion = damePresion(id, view);
-        texttemp.setText(String.format(String.valueOf(presion + 1)));
+        if (presion < 50){
+            texttemp.setText(String.format(String.valueOf(presion + 1)));
+        }
     }
 
     private int damePresion(int id, View view) {

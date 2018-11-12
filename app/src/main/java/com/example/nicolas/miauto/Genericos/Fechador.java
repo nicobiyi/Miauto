@@ -1,8 +1,5 @@
 package com.example.nicolas.miauto.Genericos;
 
-
-
-
 import java.util.Calendar;
 
 public class Fechador {

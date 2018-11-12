@@ -1,6 +1,7 @@
 package com.example.nicolas.miauto.BaseDeDatos;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -35,7 +36,28 @@ public class bdHelper {
             }
             auto = list.get(0);
         }
+        db.close();
         return auto;
+    }
+    //Solo Lectura - SL
+    public static SQLiteDatabase verificarConexionSL(SQLiteDatabase db, Context context) {
+            if (db.isOpen()){
+                return db;
+            } else {
+                baseDatos carsHelper =  new baseDatos(context, "DBTest1", null, 1);
+                db = carsHelper.getReadableDatabase();
+                return db;
+            }
+    }
+    //Lectura-Escritura - LE
+    public static SQLiteDatabase verificarConexionLE(SQLiteDatabase db, Context context) {
+        if (db.isOpen()){
+            return db;
+        } else {
+            baseDatos carsHelper =  new baseDatos(context, "DBTest1", null, 1);
+            db = carsHelper.getWritableDatabase();
+            return db;
+        }
     }
 
 
@@ -51,11 +73,14 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             db.insert("Estacionamiento", null, nuevoRegistro);
         }
+        db.close();
+
     }
 
     public static void borrarEstacionamiento(SQLiteDatabase db) {
         String sql = "DELETE FROM Estacionamiento;";
         db.execSQL(sql);
+        db.close();
     }
 
     public static boolean hayAuto(SQLiteDatabase db){
@@ -66,7 +91,8 @@ public class bdHelper {
         if (cursor.getCount()!=0) {
             hay=true;
         }
-    return hay;
+        db.close();
+        return hay;
     }
 
     public static Auto dameAuto(SQLiteDatabase db){
@@ -86,6 +112,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        db.close();
         return auto;
     }
 
@@ -105,6 +132,7 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             bd.insert("Auto", null, nuevoRegistro);
         }
+        bd.close();
     }
 
     public static void eliminarAuto(SQLiteDatabase bd) {
@@ -118,10 +146,12 @@ public class bdHelper {
         bd.execSQL(sql);
         sql = "DELETE FROM Kilometraje;";
         bd.execSQL(sql);
+        bd.close();
     }
     public static void eliminarDatosAuto(SQLiteDatabase bd){
         String sql = "DELETE FROM Auto;";
         bd.execSQL(sql);
+        bd.close();
     }
 
     public static String damePatente(SQLiteDatabase bd){
@@ -137,6 +167,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        bd.close();
         return patente;
     }
 
@@ -167,37 +198,18 @@ public class bdHelper {
             }
 
         }
+        db.close();
         return list;
     }
 
-    /*public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado) {
-        //Si hemos abierto correctamente la base de datos
-        if (bd != null) {
-            //Creamos el registro a insertar como objeto ContentValues
-           regularizarHistorial(bd);
-            ContentValues nuevoRegistro = new ContentValues();
-            // El ID es auto incrementable como declaramos en nuestro CarsSQLiteHelper
-            //nuevoRegistro.put("id", 0);
-            nuevoRegistro.put("fecha", nuevoInflado.getFecha());
-            nuevoRegistro.put("ruedadd", nuevoInflado.getRuedadd());
-            nuevoRegistro.put("ruedadi", nuevoInflado.getRuedadi());
-            nuevoRegistro.put("ruedatd", nuevoInflado.getRuedatd());
-            nuevoRegistro.put("ruedati", nuevoInflado.getRuedati());
-            nuevoRegistro.put("ruedaau", nuevoInflado.getRuedaau());
-
-            //Insertamos el registro en la base de datos
-            bd.insert("Neumaticos", null, nuevoRegistro);
-        }
-    }*/
-
-    public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado) {
+    public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado, Context context) {
         //Si hemos abierto correctamente la base de datos
         if (bd != null) {
             //Creamos el registro a insertar como objeto ContentValues
             if(nuevoInflado.isActualizarKm() && !existeFecha( bd, nuevoInflado.getKilometraje(), nuevoInflado.getFecha())){
                 cargarKm(bd, nuevoInflado.getFecha(), nuevoInflado.getKilometraje());
             }
-
+            bd = bdHelper.verificarConexionLE(bd, context);
             int id_km = getIdKm(bd, nuevoInflado.getKilometraje());
 
             regularizarHistorial(bd);
@@ -214,6 +226,7 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             bd.insert("Neumaticos", null, nuevoRegistro);
         }
+        bd.close();
     }
 
     private static boolean existeFecha(SQLiteDatabase bd, int kilometraje, String fecha) {
@@ -235,8 +248,6 @@ public class bdHelper {
     private static void regularizarHistorial(SQLiteDatabase db) {
         Cursor cursor = db.rawQuery("select id from Neumaticos", null);
         List<Integer> ids = new ArrayList<Integer>();
-
-
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
             // iteramos sobre el cursor de resultados,
             // y vamos rellenando el array que posteriormente devolveremos
@@ -253,7 +264,6 @@ public class bdHelper {
         Cursor cursor = db.rawQuery("select id from Neumaticos", null);
         List<Integer> ids = new ArrayList<Integer>();
 
-
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
             // iteramos sobre el cursor de resultados,
             // y vamos rellenando el array que posteriormente devolveremos
@@ -262,6 +272,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        db.close();
         return ids.size();
     }
 
@@ -289,6 +300,7 @@ public class bdHelper {
             bd.insert("Combustible", null, nuevoRegistro);
 
         }
+        bd.close();
     }
 
     private static int getIdKm(SQLiteDatabase bd, int km) {
@@ -318,8 +330,8 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             bd.insert("Kilometraje", null, nuevoRegistro);
         }
+        bd.close();
     }
-
 
     public static double dameUltimaCarga(SQLiteDatabase bd) {
         double total = -1;
@@ -333,6 +345,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        bd.close();
         return total;
     }
 
@@ -348,6 +361,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        bd.close();
         return kmMaximo;
 
     }
@@ -392,6 +406,7 @@ public class bdHelper {
             }
 
         }
+        db.close();
         return list;
     }
 
@@ -407,6 +422,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        bd.close();
         return pesosMensuales;
     }
 

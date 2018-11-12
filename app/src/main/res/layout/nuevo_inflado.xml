@@ -11,11 +11,11 @@
 
     <ImageButton
         android:id="@+id/btnPressUpdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/btnPressDowndd"
-        android:layout_marginTop="45dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tvPressValuedd"
+        android:layout_marginStart="-77dp"
+        android:layout_toEndOf="@+id/tvPressValuedd"
         android:src="@drawable/ic_up"
         app:layout_constraintBottom_toTopOf="@+id/tvPressValuedd"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,12 +24,10 @@
 
     <ImageButton
         android:id="@+id/btnPressDowndd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="89dp"
-        android:layout_marginTop="141dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/btnPressUpdd"
+        android:layout_below="@+id/btnPressUpdd"
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toTopOf="@+id/btnPressUptd"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,14 +36,15 @@
 
     <TextView
         android:id="@+id/tvPressValuedd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="105dp"
-        android:layout_marginTop="110dp"
-        android:background="@color/colorPrimary"
-        android:text="30"
+        android:layout_alignTop="@+id/tvPressValuedi"
+        android:layout_marginEnd="77dp"
+        android:background="@drawable/textview_design"
+        android:gravity="center"
+        android:text="@string/number_30"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnPressDowndd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvPressValuedi"
@@ -53,11 +52,11 @@
 
     <ImageButton
         android:id="@+id/btnPressUptd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/btnPressUpdd"
-        android:layout_marginBottom="147dp"
+        android:layout_marginBottom="133dp"
         android:src="@drawable/ic_up"
         app:layout_constraintBottom_toTopOf="@+id/tvPressValuetd"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,10 +65,11 @@
 
     <ImageButton
         android:id="@+id/btnPressDowntd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/btnPressUpdd"
-        android:layout_alignTop="@+id/btnPressDownti"
+        android:layout_below="@+id/btnPressUptd"
+        android:layout_marginTop="-133dp"
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toTopOf="@+id/btnPressUpau"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,12 +78,14 @@
 
     <TextView
         android:id="@+id/tvPressValuetd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:layout_alignStart="@+id/tvPressValuedd"
-        android:layout_alignTop="@+id/tvPressValueti"
-        android:background="@color/colorPrimary"
-        android:text="30"
+        android:layout_below="@+id/etKilometrajeInf"
+        android:background="@drawable/textview_design"
+        android:gravity="center"
+        android:text="@string/number_30"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnPressDowntd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvPressValueti"
@@ -91,11 +93,11 @@
 
     <ImageButton
         android:id="@+id/btnPressUpdi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/btnPressUpdd"
-        android:layout_marginStart="84dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tvPressValuedd"
+        android:layout_marginEnd="-77dp"
+        android:layout_toStartOf="@+id/tvPressValuedi"
         android:src="@drawable/ic_up"
         app:layout_constraintBottom_toTopOf="@+id/tvPressValuedi"
         app:layout_constraintEnd_toStartOf="@+id/btnPressUpdd"
@@ -104,10 +106,10 @@
 
     <ImageButton
         android:id="@+id/btnPressDowndi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/btnPressUpdi"
-        android:layout_alignTop="@+id/btnPressDowndd"
+        android:layout_below="@+id/btnPressUpdi"
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toTopOf="@+id/btnPressUpti"
         app:layout_constraintEnd_toStartOf="@+id/btnPressDowndd"
@@ -116,13 +118,16 @@
 
     <TextView
         android:id="@+id/tvPressValuedi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/tvPressValuedd"
-        android:layout_marginStart="106dp"
-        android:background="@color/colorPrimary"
-        android:text="30"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="41dp"
+        android:background="@drawable/textview_design"
+        android:gravity="center"
+        android:text="@string/number_30"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnPressDowndi"
         app:layout_constraintEnd_toStartOf="@+id/tvPressValuedd"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,8 +135,8 @@
 
     <ImageButton
         android:id="@+id/btnPressUpti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/btnPressUpdi"
         android:layout_alignTop="@+id/btnPressUptd"
         android:src="@drawable/ic_up"
@@ -142,11 +147,11 @@
 
     <ImageButton
         android:id="@+id/btnPressDownti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/btnPressUpdi"
-        android:layout_marginBottom="56dp"
+        android:layout_below="@+id/btnPressUptd"
+        android:layout_marginTop="-133dp"
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toTopOf="@id/btnPressUpau"
         app:layout_constraintEnd_toStartOf="@+id/btnPressDowntd"
@@ -155,25 +160,25 @@
 
     <TextView
         android:id="@+id/tvPressValueti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:layout_alignStart="@+id/tvPressValuedi"
-        android:layout_marginBottom="117dp"
-        android:background="@color/colorPrimary"
-        android:text="30"
-        app:layout_constraintBottom_toTopOf="@+id/btnPressDownti"
+        android:layout_alignTop="@+id/tvPressValuetd"
+        android:background="@drawable/textview_design"
+        android:gravity="center"
+        android:text="@string/number_30"
+        android:textSize="24sp"
+
         app:layout_constraintEnd_toStartOf="@+id/tvPressValuetd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPressUpti" />TextView
+         />TextView
 
     <ImageButton
         android:id="@+id/btnPressUpau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="77dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/btnPressDownau"
+        android:layout_alignStart="@+id/btnPressDownau"
         android:src="@drawable/ic_up"
         app:layout_constraintBottom_toTopOf="@+id/tvPressValueau"
         app:layout_constraintEnd_toEndOf="parent"
@@ -182,10 +187,10 @@
 
     <ImageButton
         android:id="@+id/btnPressDownau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_toStartOf="@+id/etKilometrajeInf"
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -194,12 +199,14 @@
 
     <TextView
         android:id="@+id/tvPressValueau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btnPressDownti"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_alignTop="@+id/btnPressUpau"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary"
-        android:text="30"
+        android:background="@drawable/textview_design"
+        android:gravity="center"
+        android:text="@string/number_30"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnPressDownau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -208,8 +215,8 @@
 
     <ImageButton
         android:id="@+id/btnGuardarInflado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_guardar"
@@ -220,13 +227,27 @@
 
     <EditText
         android:id="@+id/etKilometrajeInf"
-        android:layout_width="99dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="16dp"
+        android:layout_width="95dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/ic_display"
+        android:textColor="@color/colorPerlado"
         android:ems="10"
+        android:gravity="center"
         android:inputType="number"
-        android:text="Kms" />
+        android:maxLength="8"
+         />
+
+    <TextView
+        android:id="@+id/tvKmstitulo"
+        android:layout_width="76dp"
+        android:layout_height="24dp"
+        android:layout_alignTop="@+id/tvPressValuetd"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_display"
+        android:gravity="center"
+        android:text="@string/text_kms"
+        android:textColor="@color/colorPerlado" />
+
 
 </RelativeLayout>
