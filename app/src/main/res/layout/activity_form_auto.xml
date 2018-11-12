@@ -15,6 +15,7 @@
         android:layout_marginBottom="75dp"
         android:ems="10"
         android:inputType="text"
+        android:hint="Sedan 5 Puertas"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -37,6 +38,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="129dp"
         android:ems="10"
+        android:hint="AKY876578"
         android:inputType="text"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
@@ -61,6 +63,7 @@
         android:layout_marginTop="201dp"
         android:ems="10"
         android:inputType="text"
+        android:hint="Suran 1.6 5D 758"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -95,6 +98,7 @@
         android:layout_marginBottom="197dp"
         android:ems="10"
         android:inputType="text"
+        android:hint="8WAPM45ZE3657654"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -107,6 +111,7 @@
         android:layout_marginTop="119dp"
         android:ems="10"
         android:inputType="text"
+        android:hint="VolksWagen"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -142,6 +147,7 @@
         android:layout_marginTop="46dp"
         android:ems="10"
         android:inputType="text"
+        android:hint="ABC123"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
