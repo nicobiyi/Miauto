@@ -116,7 +116,8 @@ public class Tab1Carga extends Fragment {
                     nuevaCarga = capturarCargaCombustible();
 
                     try {
-                        bdHelper.guardarCargaCombustible(bd, nuevaCarga);
+                        bd = bdHelper.verificarConexionLE(bd, getActivity().getApplicationContext());
+                        bdHelper.guardarCargaCombustible(bd, nuevaCarga, getActivity().getApplicationContext());
                         // Avisar al usuario que se guardo OK
                         Toast.makeText(getActivity().getApplicationContext(),"Carga de combustible realizada con éxito", Toast.LENGTH_LONG).show();
 

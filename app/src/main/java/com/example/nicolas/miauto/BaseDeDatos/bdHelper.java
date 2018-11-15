@@ -276,7 +276,7 @@ public class bdHelper {
         return ids.size();
     }
 
-    public static void guardarCargaCombustible(SQLiteDatabase bd, CargaCombustible carga) throws Exception {
+    public static void guardarCargaCombustible(SQLiteDatabase bd, CargaCombustible carga, Context context) {
         //Si hemos abierto correctamente la base de datos
         if (bd != null) {
             //Creamos el registro a insertar como objeto ContentValues
@@ -284,7 +284,7 @@ public class bdHelper {
             if(carga.isActualizarKm()){
                 cargarKm(bd, carga.getFecha(), carga.getKilometraje());
             }
-
+            verificarConexionSL(bd, context);
             int id_km = getIdKm(bd, carga.getKilometraje());
 
             ContentValues nuevoRegistro = new ContentValues();
