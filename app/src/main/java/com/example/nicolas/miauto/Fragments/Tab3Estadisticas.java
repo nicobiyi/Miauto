@@ -17,14 +17,18 @@ import com.example.nicolas.miauto.R;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by Nicolas on 4/10/2018.
  */
 
 public class Tab3Estadisticas extends Fragment {
 
-   // private TextView totalMensual;
+    private TextView totalMensual;
     // private TextView ltsMensuales;
+    private TextView mesActual;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
 
@@ -35,11 +39,28 @@ public class Tab3Estadisticas extends Fragment {
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
 
-        //totalMensual = (TextView) rootView.findViewById(R.id.etTotalMensual);
+        Calendar calendar =  Calendar.getInstance();
+        int mes = calendar.get(Calendar.MONTH);
+
+        totalMensual = (TextView) rootView.findViewById(R.id.tvTotalMensualEstadistica);
         //ltsMensuales = (TextView) rootView.findViewById(R.id.etLitrosMensuales);
 
 
-        //String total = bdHelper.getGastoTotalMesActual(bd);
+        mesActual = (TextView) rootView.findViewById(R.id.tvMesActual);
+
+        mesActual.setText(new SimpleDateFormat("MMMM").format(calendar.getTime()));
+
+        //quiero ir a la base de datos y traerme la suma de plata gastada en ese mes
+       try {
+           String totalMes = bdHelper.getGastoTotalMesActual(bd, mes+1);
+           totalMes = "$ " + totalMes;
+           totalMensual.setText(totalMes);
+       } catch (Exception e){ };
+
+
+
+
+
 
 
 

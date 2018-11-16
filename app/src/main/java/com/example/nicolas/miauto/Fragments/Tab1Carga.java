@@ -70,6 +70,7 @@ public class Tab1Carga extends Fragment {
         btn = (Button) myFragmentView.findViewById(R.id.btnGuardarCarga);
 
         //busco y autocompleto el Km mayor que tenga la bd
+        bd = bdHelper.verificarConexionSL(bd, getActivity().getApplicationContext());
         kmMax = bdHelper.dameKilometrajeMaximo(bd);
         etKm.setText(Integer.toString(kmMax));
 
@@ -116,6 +117,7 @@ public class Tab1Carga extends Fragment {
                     nuevaCarga = capturarCargaCombustible();
 
                     try {
+                        bd = bdHelper.verificarConexionLE(bd, getActivity().getApplicationContext());
                         bdHelper.guardarCargaCombustible(bd, nuevaCarga);
                         // Avisar al usuario que se guardo OK
                         Toast.makeText(getActivity().getApplicationContext(),"Carga de combustible realizada con éxito", Toast.LENGTH_LONG).show();

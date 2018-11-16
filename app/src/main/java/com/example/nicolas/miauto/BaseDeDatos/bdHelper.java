@@ -330,7 +330,6 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             bd.insert("Kilometraje", null, nuevoRegistro);
         }
-        bd.close();
     }
 
     public static double dameUltimaCarga(SQLiteDatabase bd) {
@@ -410,15 +409,15 @@ public class bdHelper {
         return list;
     }
 
-    public static int getGastoTotalMesActual(SQLiteDatabase bd) {
-        int pesosMensuales = -1;
-        Cursor cursor = bd.rawQuery("select fecha, sum(total) totalMes from Kilometraje group by fecha", null);
+    public static String getGastoTotalMesActual(SQLiteDatabase bd, int mes) {
+        String pesosMensuales = "Menos 1";
+        Cursor cursor = bd.rawQuery("select sum(total) dato from Combustible where substr(fecha,4,2) = '" +mes + "'", null);
 
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
             // iteramos sobre el cursor de resultados,
             // y vamos rellenando el array que posteriormente devolveremos
             while (cursor.isAfterLast() == false) {
-                pesosMensuales = cursor.getInt(cursor.getColumnIndex("km"));
+                pesosMensuales = cursor.getString(cursor.getColumnIndex("dato"));
                 cursor.moveToNext();
             }
         }

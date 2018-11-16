@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/negro"
+    android:background="@color/colorPerlado"
     android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvMesActual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:textSize="30dp"
+        />
 
     <TextView
         android:id="@+id/tvTituloEstadistica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="120dp"
         android:text="ESTADISTICAS"
         android:textSize="30dp"
         android:textStyle="bold|italic" />
@@ -27,10 +36,29 @@
         android:id="@+id/tvTotalMensualEstadistica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$ 2049,12"
         android:textSize="24dp"
         android:layout_alignTop="@id/tvTotalMensual"
         android:layout_toRightOf="@id/tvTotalMensual"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:id="@+id/tvCargaMaxima"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carga Maxima"
+        android:textSize="24dp"
+        android:layout_below="@id/tvTotalMensual"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/tvCargaMaximaEstadistica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$ 618,38"
+        android:textSize="24dp"
+        android:layout_alignTop="@id/tvCargaMaxima"
+        android:layout_toRightOf="@id/tvCargaMaxima"
         android:layout_marginLeft="20dp"/>
 
 
