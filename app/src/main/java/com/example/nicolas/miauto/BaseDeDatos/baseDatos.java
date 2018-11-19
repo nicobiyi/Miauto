@@ -40,6 +40,11 @@ public class baseDatos extends SQLiteOpenHelper {
             "  kilometros int\n" +
             ");";
 
+    String servicios = "CREATE TABLE Servicios (\n" +
+            "  tachada int,\n" +
+            "  nombre varchar(30) NOT NULL\n" +
+            ");";
+
     public baseDatos(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -53,6 +58,7 @@ public class baseDatos extends SQLiteOpenHelper {
         db.execSQL(neumaticos);
         db.execSQL(combustible);
         db.execSQL(kilometraje);
+        db.execSQL(servicios);
     }
 
     @Override
@@ -63,6 +69,8 @@ public class baseDatos extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Neumaticos");
         db.execSQL("DROP TABLE IF EXISTS Combustible");
         db.execSQL("DROP TABLE IF EXISTS Kilometraje");
+        db.execSQL("DROP TABLE IF EXISTS Servicios");
+
 
         //Se crea la nueva versión de la tabla
         db.execSQL(estacionamiento);
@@ -70,5 +78,7 @@ public class baseDatos extends SQLiteOpenHelper {
         db.execSQL(neumaticos);
         db.execSQL(combustible);
         db.execSQL(kilometraje);
+        db.execSQL(servicios);
+
     }
 }

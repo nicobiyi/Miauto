@@ -42,6 +42,7 @@ public class InfoAutoActivity extends Activity {
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
         cargarDatos();
+        etPatente.requestFocus();
         btnRegistrarAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

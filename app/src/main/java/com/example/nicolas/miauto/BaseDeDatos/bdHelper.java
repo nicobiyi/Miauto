@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.nicolas.miauto.Clases.Auto;
 import com.example.nicolas.miauto.Clases.CargaCombustible;
 import com.example.nicolas.miauto.Clases.Inflado;
+import com.example.nicolas.miauto.Clases.Service;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -145,6 +146,8 @@ public class bdHelper {
         sql = "DELETE FROM Combustible;";
         bd.execSQL(sql);
         sql = "DELETE FROM Kilometraje;";
+        bd.execSQL(sql);
+        sql = "DELETE FROM Servicios;";
         bd.execSQL(sql);
         bd.close();
     }
@@ -426,4 +429,86 @@ public class bdHelper {
     }
 
 
+    public static void borrarCargasCombustible(SQLiteDatabase bd) {
+        String sql = "DELETE FROM Combustible;";
+        bd.execSQL(sql);
+        bd.close();
+    }
+
+    public static List<Service> dameServices(SQLiteDatabase bd) {
+        List<Service> service = new ArrayList<>();
+        String p;
+        int temp;
+        boolean tachada;
+        Service s;
+
+        // Seleccionamos todos los registros de la tabla Neumaticos
+        Cursor cursor = bd.rawQuery("select * from Servicios", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                p = cursor.getString(cursor.getColumnIndex("nombre"));
+                temp = cursor.getInt(cursor.getColumnIndex("tachada"));
+                if (temp==0){
+                    tachada=false;
+                } else {
+                    tachada=true;
+                }
+                s = new Service(p,tachada);
+                service.add(s);
+                cursor.moveToNext();
+            }
+        }
+        bd.close();
+        return service;
+    }
+    public static void agregarServicio(String p, SQLiteDatabase bd){
+        if (bd != null) {
+            //Creamos el registro a insertar como objeto ContentValues
+
+            ContentValues nuevoRegistro = new ContentValues();
+
+            nuevoRegistro.put("nombre", p);
+            nuevoRegistro.put("tachada", 0);
+
+            //Insertamos el registro en la base de datos
+            bd.insert("Servicios", null, nuevoRegistro);
+        }
+        bd.close();
+    }
+
+    public static int estaTachada(SQLiteDatabase bd, String p){
+        int tachada=-1;
+
+        // Seleccionamos todos los registros de la tabla Neumaticos
+        Cursor cursor = bd.rawQuery("select tachada from Servicios where nombre = '" + p + "';", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                tachada = cursor.getInt(cursor.getColumnIndex("tachada"));
+            }
+        }
+        return tachada;
+    }
+
+    public static void borrarPalabra(SQLiteDatabase bd, String p) {
+        String sql = "DELETE FROM Servicios where nombre = '" + p + "';";
+        bd.execSQL(sql);
+        bd.close();
+    }
+
+    public static void tachar(SQLiteDatabase bd, String p) {
+        String sql = "UPDATE Servicios SET tachada = 1 WHERE nombre = '" + p + "';";
+        bd.execSQL(sql);
+        bd.close();
+    }
+    public static void normal(SQLiteDatabase bd, String p) {
+        String sql = "UPDATE Servicios SET tachada = 0 WHERE nombre = '" + p + "';";
+        bd.execSQL(sql);
+        bd.close();
+    }
 }

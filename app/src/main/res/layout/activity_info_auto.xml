@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.InfoAutoActivity">
+    tools:context=".Activities.InfoAutoActivity"
+    android:background="@drawable/ic_malla2"
+    >
 
     <EditText
         android:id="@+id/etTipo2"
@@ -13,8 +15,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="75dp"
+        android:backgroundTint="?android:attr/colorActivatedHighlight"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/colorBlanco"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -26,6 +30,7 @@
         android:layout_alignStart="@+id/tvMarca2"
         android:text="@string/tipo"
         android:textSize="25dp"
+        android:textColor="@color/colorBlanco"
         tools:layout_editor_absoluteX="46dp"
         tools:layout_editor_absoluteY="56dp" />
 
@@ -36,8 +41,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="129dp"
+        android:backgroundTint="?android:attr/colorActivatedHighlight"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/colorBlanco"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -48,6 +55,7 @@
         android:layout_alignStart="@+id/tvTipo2"
         android:layout_alignTop="@+id/etMotor2"
         android:text="@string/text_motor"
+        android:textColor="@color/colorBlanco"
         android:textSize="25dp"
         tools:layout_editor_absoluteX="46dp"
         tools:layout_editor_absoluteY="56dp" />
@@ -59,14 +67,17 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="201dp"
+        android:backgroundTint="?android:attr/colorActivatedHighlight"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/colorBlanco"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
     <TextView
         android:id="@+id/tvModelo2"
         android:layout_width="wrap_content"
+        android:textColor="@color/colorBlanco"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/etModelo2"
         android:layout_alignStart="@+id/tvTipo2"
@@ -78,6 +89,7 @@
     <TextView
         android:id="@+id/tvMarca2"
         android:layout_width="wrap_content"
+        android:textColor="@color/colorBlanco"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/etMarca2"
         android:layout_alignStart="@+id/tvPatente4"
@@ -93,8 +105,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="197dp"
+        android:backgroundTint="?android:attr/colorActivatedHighlight"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/colorBlanco"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -105,8 +119,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="119dp"
+        android:backgroundTint="?android:attr/colorActivatedHighlight"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/colorBlanco"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -118,6 +134,7 @@
         android:layout_alignTop="@+id/etPatente2"
         android:layout_marginStart="46dp"
         android:text="@string/text_patente"
+        android:textColor="@color/colorBlanco"
         android:textSize="25dp"
         tools:layout_editor_absoluteX="46dp"
         tools:layout_editor_absoluteY="56dp" />
@@ -127,8 +144,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/etChasis2"
-        android:layout_alignStart="@+id/tvTipo2"
+        android:layout_alignEnd="@+id/tvMotor2"
         android:text="@string/text_chasis"
+        android:textColor="@color/colorBlanco"
         android:textSize="25dp"
         tools:layout_editor_absoluteX="46dp"
         tools:layout_editor_absoluteY="56dp" />
@@ -140,8 +158,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="46dp"
+        android:backgroundTint="?android:attr/colorActivatedHighlight"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/colorBlanco"
         tools:layout_editor_absoluteX="153dp"
         tools:layout_editor_absoluteY="40dp" />
 
@@ -152,5 +172,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-153dp"
         android:layout_toEndOf="@+id/tvChasis2"
-        android:text="@string/btn_actualizar_info" />
+        android:backgroundTint="?android:attr/colorActivatedHighlight"
+        android:text="@string/btn_actualizar_info"
+        android:textColor="@color/colorBlanco" />
 </RelativeLayout>

@@ -69,6 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         db = carsHelper.getWritableDatabase();
+        setTitle("Mapa Auto - " + bdHelper.damePatente(db));
         btnGuardar = (ImageButton) findViewById(R.id.btnGuardar);
         btnBorrar = (ImageButton) findViewById(R.id.btnBorrar);
         if (!checkGPS()) {
