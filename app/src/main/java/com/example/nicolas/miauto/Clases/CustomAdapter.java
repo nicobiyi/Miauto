@@ -1,6 +1,8 @@
 package com.example.nicolas.miauto.Clases;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nicolas.miauto.Activities.ServiceActivity;
 import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
@@ -71,7 +74,7 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
         view = inflter.inflate(R.layout.service_lista, null);
         final TextView simpleCheckedTextView = (TextView) view.findViewById(R.id.checkedTextView);
         simpleCheckedTextView.setText(value.get(position).getNombre());
@@ -90,6 +93,9 @@ public class CustomAdapter extends BaseAdapter {
             }
         });
 
+
         return view;
     }
+
+
 }
