@@ -30,7 +30,12 @@
     <string name="text_guardar_carga">Guardar Carga</string>
     <string name="text_estadisticas">ESTADISTICAS</string>
     <string name="text_tot_mensual">Total Mensual</string>
-    <string name="text_max_carga">Carga Maxima</string>
+    <string name="text_max_carga">Carga Máxima</string>
+    <string name="menu_combu">Combustible</string>
+    <string name="menu_aire">Neumaticos</string>
+    <string name="menu_mapas">Donde Estacioné?</string>
+    <string name="menu_check">Check-list</string>
+    <string name="menu_info">Información del auto</string>
 
 
 </resources>

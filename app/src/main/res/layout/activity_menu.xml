@@ -60,4 +60,61 @@
         android:layout_toEndOf="@+id/btnNeumaticos"
         android:src="@drawable/info" />
 
+    <TextView
+        android:id="@+id/tvbtnComb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btnCombustible"
+        android:layout_marginStart="27dp"
+        android:text="@string/menu_combu"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlanco"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvbtnNeum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/btnCombustible"
+        android:layout_marginEnd="147dp"
+        android:text="@string/menu_aire"
+        android:textColor="@color/colorBlanco"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvbtnMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/btnCombustible"
+        android:text="@string/menu_mapas"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlanco"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvbtnCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnService"
+        android:layout_alignEnd="@+id/tvbtnComb"
+        android:text="@string/menu_check"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlanco"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvbtnInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnService"
+        android:layout_alignEnd="@+id/btnEstacionamiento"
+        android:text="@string/menu_info"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlanco"
+        android:textStyle="bold" />
+
 </RelativeLayout>
