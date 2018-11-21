@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etLitros"
         android:layout_centerHorizontal="true"
-        android:text="Litros"
+        android:text="@string/text_litros"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -41,7 +41,7 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@android:color/white"
         android:ems="10"
-        android:hint="$"
+        android:hint="@string/hint_$"
         android:inputType="numberDecimal"
         android:textAlignment="center"
         android:textColor="@android:color/white"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etTotalCarga"
         android:layout_centerHorizontal="true"
-        android:text="Total"
+        android:text="@string/text_total"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/edFechaCargaCombustible"
         android:layout_centerHorizontal="true"
-        android:text="Fecha"
+        android:text="@string/text_fecha"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etKilometraje"
         android:layout_centerHorizontal="true"
-        android:text="Kilometros"
+        android:text="@string/text_kms"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
@@ -116,6 +116,6 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tvKilometros"
         android:layout_marginTop="29dp"
-        android:text="Guardar Carga"
+        android:text="@string/text_guardar_carga"
         android:textSize="18sp" />
 </RelativeLayout>

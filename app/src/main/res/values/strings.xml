@@ -5,8 +5,8 @@
     <string name="title_activity_combustible">CombustibleActivity</string>
     <string name="action_settings">Resetear cargas</string>
     <string name="section_format">Hello World from section</string>
-    <string name="tipo">Tipo</string>
     <string name="text">Text</string>
+    <string name="text_tipo">Tipo</string>
     <string name="text_motor">Motor N°</string>
     <string name="text_chasis">Chasis Nº</string>
     <string name="text_modelo">Modelo</string>
@@ -18,6 +18,19 @@
     <string name="text_kms">Kilometros</string>
     <string name="text_fecha">fecha</string>
     <string name="aviso_sin_inflados">NO HAY INFLADOS</string>
+    <string name="hint_tipo">Sedan 5 Puertas</string>
+    <string name="hint_modelo">Suran 1.6 5D 758</string>
+    <string name="hint_chasis">8WAPM45ZE3657654</string>
+    <string name="hint_marca">VolksWagen</string>
+    <string name="hint_motor">AKY876578</string>
+    <string name="hint_patente">ABC123</string>
+    <string name="text_litros">Litros</string>
+    <string name="hint_$">$</string>
+    <string name="text_total">Total</string>
+    <string name="text_guardar_carga">Guardar Carga</string>
+    <string name="text_estadisticas">ESTADISTICAS</string>
+    <string name="text_tot_mensual">Total Mensual</string>
+    <string name="text_max_carga">Carga Maxima</string>
 
 
 </resources>

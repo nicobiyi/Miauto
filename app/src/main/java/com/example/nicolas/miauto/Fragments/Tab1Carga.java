@@ -63,6 +63,7 @@ public class Tab1Carga extends Fragment {
         bd = carsHelper.getWritableDatabase();
 
         etFecha = (EditText) myFragmentView.findViewById(R.id.edFechaCargaCombustible);
+
         etLitros = (EditText) myFragmentView.findViewById(R.id.etLitros);
         etLitros.requestFocus();
         etTotal = (EditText) myFragmentView.findViewById(R.id.etTotalCarga);

@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/etTipo2"
         android:layout_alignStart="@+id/tvMarca2"
-        android:text="@string/tipo"
+        android:text="@string/text_tipo"
         android:textSize="25dp"
         android:textColor="@color/colorBlanco"
         tools:layout_editor_absoluteX="46dp"

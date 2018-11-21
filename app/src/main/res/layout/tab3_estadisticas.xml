@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
-        android:text="ESTADISTICAS"
+        android:text="@string/text_estadisticas"
         android:textSize="30dp"
         android:textStyle="bold|italic" />
 
@@ -26,7 +26,7 @@
         android:id="@+id/tvTotalMensual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Mensual"
+        android:text="@string/text_tot_mensual"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:textSize="24dp"
@@ -45,7 +45,7 @@
         android:id="@+id/tvCargaMaxima"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Carga Maxima"
+        android:text="@string/text_max_carga"
         android:textSize="24dp"
         android:layout_below="@id/tvTotalMensual"
         android:layout_marginLeft="30dp"
