@@ -8,7 +8,7 @@
     <string name="text">Text</string>
     <string name="text_tipo">Tipo</string>
     <string name="text_motor">Motor N°</string>
-    <string name="text_chasis">Chasis Nº</string>
+    <string name="text_chasis">Chasis N°</string>
     <string name="text_modelo">Modelo</string>
     <string name="text_marca">Marca</string>
     <string name="text_patente">Patente</string>

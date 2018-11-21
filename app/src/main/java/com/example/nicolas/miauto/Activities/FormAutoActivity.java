@@ -48,8 +48,8 @@ public class FormAutoActivity extends Activity {
         btnRegistrarAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String patente= etPatente.getText().toString();
                 if (chequearTextosVacios()){
-                    String patente= etPatente.getText().toString();
                     String marca= etMarca.getText().toString();
                     String modelo= etModelo.getText().toString();
                     String chasis= etChasis.getText().toString();
@@ -150,6 +150,8 @@ public class FormAutoActivity extends Activity {
         if(TextUtils.isEmpty(texto)) {
             etPatente.setError("Este campo es obligatorio.");
             ok= false;
+        } else if (!validarPatente(texto)){
+            ok= false;
         }
         texto = etMarca.getText().toString();
         if(TextUtils.isEmpty(texto)) {
@@ -165,6 +167,15 @@ public class FormAutoActivity extends Activity {
         if(TextUtils.isEmpty(texto)) {
             etTipo.setError("Este campo es obligatorio.");
             ok= false;
+        }
+        return ok;
+    }
+    public boolean validarPatente(String patente){
+        boolean ok = false;
+        if (patente.length() == 6 || patente.length()== 7 ){
+            ok = true;
+        } else {
+            etPatente.setError("La patente tiene que tener 6 o 7 caracteres.");
         }
         return ok;
     }

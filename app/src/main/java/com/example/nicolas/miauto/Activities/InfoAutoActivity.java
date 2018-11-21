@@ -73,6 +73,8 @@ public class InfoAutoActivity extends Activity {
         if(TextUtils.isEmpty(texto)) {
             etPatente.setError("Este campo es obligatorio.");
             ok= false;
+        } else if (!validarPatente(texto)){
+            ok= false;
         }
         texto = etMarca.getText().toString();
         if(TextUtils.isEmpty(texto)) {
@@ -114,5 +116,15 @@ public class InfoAutoActivity extends Activity {
         Intent intent = new Intent(InfoAutoActivity.this, MenuItem.class);
         startActivity(intent);
         return true;
+    }
+
+    public boolean validarPatente(String patente){
+        boolean ok = false;
+        if (patente.length() == 6 || patente.length()== 7 ){
+            ok = true;
+        } else {
+            etPatente.setError("La patente tiene que tener 6 o 7 caracteres.");
+        }
+        return ok;
     }
 }
