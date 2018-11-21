@@ -43,6 +43,7 @@ public class Tab2DetallesCargas extends Fragment {
         lvListaCargas = (ListView) rootView.findViewById(R.id.lvCargas);
 
         listaCargas = new ArrayList<>();
+        bd = bdHelper.verificarConexionSL(bd, getActivity().getApplicationContext());
         listaCargas = bdHelper.getCargas(bd);
         ArrayList listaCargasString = listarCargasString(listaCargas);
 

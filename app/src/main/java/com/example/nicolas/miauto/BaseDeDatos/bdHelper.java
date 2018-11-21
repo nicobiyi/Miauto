@@ -1,12 +1,14 @@
 package com.example.nicolas.miauto.BaseDeDatos;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.nicolas.miauto.Clases.Auto;
 import com.example.nicolas.miauto.Clases.CargaCombustible;
 import com.example.nicolas.miauto.Clases.Inflado;
+import com.example.nicolas.miauto.Clases.Service;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -35,7 +37,28 @@ public class bdHelper {
             }
             auto = list.get(0);
         }
+        db.close();
         return auto;
+    }
+    //Solo Lectura - SL
+    public static SQLiteDatabase verificarConexionSL(SQLiteDatabase db, Context context) {
+            if (db.isOpen()){
+                return db;
+            } else {
+                baseDatos carsHelper =  new baseDatos(context, "DBTest1", null, 1);
+                db = carsHelper.getReadableDatabase();
+                return db;
+            }
+    }
+    //Lectura-Escritura - LE
+    public static SQLiteDatabase verificarConexionLE(SQLiteDatabase db, Context context) {
+        if (db.isOpen()){
+            return db;
+        } else {
+            baseDatos carsHelper =  new baseDatos(context, "DBTest1", null, 1);
+            db = carsHelper.getWritableDatabase();
+            return db;
+        }
     }
 
 
@@ -51,11 +74,14 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             db.insert("Estacionamiento", null, nuevoRegistro);
         }
+        db.close();
+
     }
 
     public static void borrarEstacionamiento(SQLiteDatabase db) {
         String sql = "DELETE FROM Estacionamiento;";
         db.execSQL(sql);
+        db.close();
     }
 
     public static boolean hayAuto(SQLiteDatabase db){
@@ -66,7 +92,8 @@ public class bdHelper {
         if (cursor.getCount()!=0) {
             hay=true;
         }
-    return hay;
+        db.close();
+        return hay;
     }
 
     public static Auto dameAuto(SQLiteDatabase db){
@@ -86,6 +113,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        db.close();
         return auto;
     }
 
@@ -105,6 +133,7 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             bd.insert("Auto", null, nuevoRegistro);
         }
+        bd.close();
     }
 
     public static void eliminarAuto(SQLiteDatabase bd) {
@@ -118,10 +147,14 @@ public class bdHelper {
         bd.execSQL(sql);
         sql = "DELETE FROM Kilometraje;";
         bd.execSQL(sql);
+        sql = "DELETE FROM Servicios;";
+        bd.execSQL(sql);
+        bd.close();
     }
     public static void eliminarDatosAuto(SQLiteDatabase bd){
         String sql = "DELETE FROM Auto;";
         bd.execSQL(sql);
+        bd.close();
     }
 
     public static String damePatente(SQLiteDatabase bd){
@@ -137,6 +170,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        bd.close();
         return patente;
     }
 
@@ -167,17 +201,18 @@ public class bdHelper {
             }
 
         }
+        db.close();
         return list;
     }
 
-    public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado) {
+    public static void crearInflado(SQLiteDatabase bd, Inflado nuevoInflado, Context context) {
         //Si hemos abierto correctamente la base de datos
         if (bd != null) {
             //Creamos el registro a insertar como objeto ContentValues
             if(nuevoInflado.isActualizarKm() && !existeFecha( bd, nuevoInflado.getKilometraje(), nuevoInflado.getFecha())){
                 cargarKm(bd, nuevoInflado.getFecha(), nuevoInflado.getKilometraje());
             }
-
+            bd = bdHelper.verificarConexionLE(bd, context);
             int id_km = getIdKm(bd, nuevoInflado.getKilometraje());
 
             regularizarHistorial(bd);
@@ -194,6 +229,7 @@ public class bdHelper {
             //Insertamos el registro en la base de datos
             bd.insert("Neumaticos", null, nuevoRegistro);
         }
+        bd.close();
     }
 
     private static boolean existeFecha(SQLiteDatabase bd, int kilometraje, String fecha) {
@@ -215,8 +251,6 @@ public class bdHelper {
     private static void regularizarHistorial(SQLiteDatabase db) {
         Cursor cursor = db.rawQuery("select id from Neumaticos", null);
         List<Integer> ids = new ArrayList<Integer>();
-
-
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
             // iteramos sobre el cursor de resultados,
             // y vamos rellenando el array que posteriormente devolveremos
@@ -233,7 +267,6 @@ public class bdHelper {
         Cursor cursor = db.rawQuery("select id from Neumaticos", null);
         List<Integer> ids = new ArrayList<Integer>();
 
-
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
             // iteramos sobre el cursor de resultados,
             // y vamos rellenando el array que posteriormente devolveremos
@@ -242,10 +275,11 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        db.close();
         return ids.size();
     }
 
-    public static void guardarCargaCombustible(SQLiteDatabase bd, CargaCombustible carga) throws Exception {
+    public static void guardarCargaCombustible(SQLiteDatabase bd, CargaCombustible carga, Context context) {
         //Si hemos abierto correctamente la base de datos
         if (bd != null) {
             //Creamos el registro a insertar como objeto ContentValues
@@ -253,7 +287,7 @@ public class bdHelper {
             if(carga.isActualizarKm()){
                 cargarKm(bd, carga.getFecha(), carga.getKilometraje());
             }
-
+            verificarConexionSL(bd, context);
             int id_km = getIdKm(bd, carga.getKilometraje());
 
             ContentValues nuevoRegistro = new ContentValues();
@@ -269,6 +303,7 @@ public class bdHelper {
             bd.insert("Combustible", null, nuevoRegistro);
 
         }
+        bd.close();
     }
 
     private static int getIdKm(SQLiteDatabase bd, int km) {
@@ -312,6 +347,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        bd.close();
         return total;
     }
 
@@ -327,6 +363,7 @@ public class bdHelper {
                 cursor.moveToNext();
             }
         }
+        bd.close();
         return kmMaximo;
 
     }
@@ -371,23 +408,107 @@ public class bdHelper {
             }
 
         }
+        db.close();
         return list;
     }
 
-    public static int getGastoTotalMesActual(SQLiteDatabase bd) {
-        int pesosMensuales = -1;
-        Cursor cursor = bd.rawQuery("select fecha, sum(total) totalMes from Kilometraje group by fecha", null);
+    public static String getGastoTotalMesActual(SQLiteDatabase bd, int mes) {
+        String pesosMensuales = "Menos 1";
+        Cursor cursor = bd.rawQuery("select sum(total) dato from Combustible where substr(fecha,4,2) = '" +mes + "'", null);
 
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
             // iteramos sobre el cursor de resultados,
             // y vamos rellenando el array que posteriormente devolveremos
             while (cursor.isAfterLast() == false) {
-                pesosMensuales = cursor.getInt(cursor.getColumnIndex("km"));
+                pesosMensuales = cursor.getString(cursor.getColumnIndex("dato"));
                 cursor.moveToNext();
             }
         }
+        bd.close();
         return pesosMensuales;
     }
 
 
+    public static void borrarCargasCombustible(SQLiteDatabase bd) {
+        String sql = "DELETE FROM Combustible;";
+        bd.execSQL(sql);
+        bd.close();
+    }
+
+    public static List<Service> dameServices(SQLiteDatabase bd) {
+        List<Service> service = new ArrayList<>();
+        String p;
+        int temp;
+        boolean tachada;
+        Service s;
+
+        // Seleccionamos todos los registros de la tabla Neumaticos
+        Cursor cursor = bd.rawQuery("select * from Servicios", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                p = cursor.getString(cursor.getColumnIndex("nombre"));
+                temp = cursor.getInt(cursor.getColumnIndex("tachada"));
+                if (temp==0){
+                    tachada=false;
+                } else {
+                    tachada=true;
+                }
+                s = new Service(p,tachada);
+                service.add(s);
+                cursor.moveToNext();
+            }
+        }
+        bd.close();
+        return service;
+    }
+    public static void agregarServicio(String p, SQLiteDatabase bd){
+        if (bd != null) {
+            //Creamos el registro a insertar como objeto ContentValues
+
+            ContentValues nuevoRegistro = new ContentValues();
+
+            nuevoRegistro.put("nombre", p);
+            nuevoRegistro.put("tachada", 0);
+
+            //Insertamos el registro en la base de datos
+            bd.insert("Servicios", null, nuevoRegistro);
+        }
+        bd.close();
+    }
+
+    public static int estaTachada(SQLiteDatabase bd, String p){
+        int tachada=-1;
+
+        // Seleccionamos todos los registros de la tabla Neumaticos
+        Cursor cursor = bd.rawQuery("select tachada from Servicios where nombre = '" + p + "';", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                tachada = cursor.getInt(cursor.getColumnIndex("tachada"));
+            }
+        }
+        return tachada;
+    }
+
+    public static void borrarPalabra(SQLiteDatabase bd, String p) {
+        String sql = "DELETE FROM Servicios where nombre = '" + p + "';";
+        bd.execSQL(sql);
+        bd.close();
+    }
+
+    public static void tachar(SQLiteDatabase bd, String p) {
+        String sql = "UPDATE Servicios SET tachada = 1 WHERE nombre = '" + p + "';";
+        bd.execSQL(sql);
+        bd.close();
+    }
+    public static void normal(SQLiteDatabase bd, String p) {
+        String sql = "UPDATE Servicios SET tachada = 0 WHERE nombre = '" + p + "';";
+        bd.execSQL(sql);
+        bd.close();
+    }
 }

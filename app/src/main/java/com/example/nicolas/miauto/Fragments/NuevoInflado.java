@@ -157,7 +157,8 @@ public class NuevoInflado extends Fragment {
                         month++;
                         fecha[0] = dayOfMonth + "/" + month + "/" + year;
                         nuevoInflado = dameInflado(myFragmentView, fecha[0]);
-                        bdHelper.crearInflado(bd, nuevoInflado);
+                        bd = bdHelper.verificarConexionLE(bd, getActivity().getApplicationContext());
+                        bdHelper.crearInflado(bd, nuevoInflado, getActivity().getApplicationContext());
                         Toast.makeText(getActivity().getApplicationContext(),"Nuevo inflado guardado!",Toast.LENGTH_LONG).show();
                     }
                 }, anio, mes, dia);

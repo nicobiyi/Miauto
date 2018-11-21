@@ -69,6 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         db = carsHelper.getWritableDatabase();
+        setTitle("Mapa Auto - " + bdHelper.damePatente(db));
         btnGuardar = (ImageButton) findViewById(R.id.btnGuardar);
         btnBorrar = (ImageButton) findViewById(R.id.btnBorrar);
         if (!checkGPS()) {
@@ -150,6 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onResume() {
         super.onResume();
+        db = bdHelper.verificarConexionSL(db, MapsActivity.this);
         if (!bdHelper.hayAuto(db)){
             Intent intent = new Intent(MapsActivity.this, GarageActivity.class);
             startActivity(intent);
@@ -248,12 +250,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void guardarMarcador(double lat, double lon) {
+        db = bdHelper.verificarConexionLE(db, MapsActivity.this);
         bdHelper.borrarEstacionamiento(db);
         LatLng temp = new LatLng(lat, lon);
+        db = bdHelper.verificarConexionLE(db, MapsActivity.this);
         bdHelper.guardarDireccion(db, temp);
     }
 
     private void inicializar() {
+        db = bdHelper.verificarConexionSL(db, MapsActivity.this);
         latLongAuto = bdHelper.getEstacionamiento(db);
         if (latLongAuto!=null){
             autoMarker = gmap.addMarker(new MarkerOptions()
@@ -268,6 +273,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void borrarDireccion() {
         //borro de la bd
+        db = bdHelper.verificarConexionLE(db, MapsActivity.this);
         bdHelper.borrarEstacionamiento(db);
         gmap.clear();
         Toast.makeText(getApplicationContext(),"Ubicación eliminada", Toast.LENGTH_LONG).show();
@@ -276,6 +282,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void guardarDireccion(Location loc) {
         //guardo en la bd
         LatLng temp = new LatLng(loc.getLatitude(), loc.getLongitude());
+        db = bdHelper.verificarConexionLE(db, MapsActivity.this);
         bdHelper.guardarDireccion(db, temp);
         latLongAuto= new LatLng(loc.getLatitude(),loc.getLongitude());
         autoMarker = gmap.addMarker(new MarkerOptions()

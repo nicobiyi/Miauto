@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.nicolas.miauto.BaseDeDatos.bdHelper;
 import com.example.nicolas.miauto.Clases.Inflado;
 import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
 import com.example.nicolas.miauto.R;
 
 import java.util.List;
-
-import static com.example.nicolas.miauto.BaseDeDatos.bdHelper.getNeumaticos;
 
 public class HistorialInflado extends Fragment {
 
@@ -45,7 +44,7 @@ public class HistorialInflado extends Fragment {
         final View myFragmentView = inflater.inflate(R.layout.historial_inflado, container, false);
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getReadableDatabase();
-        inflados = getNeumaticos(bd);
+        inflados = bdHelper.getNeumaticos(bd);
         dd = (TextView) myFragmentView.findViewById(R.id.tvPressValueddH);
         di = (TextView) myFragmentView.findViewById(R.id.tvPressValuediH);
         td = (TextView) myFragmentView.findViewById(R.id.tvPressValuetdH);

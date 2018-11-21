@@ -30,6 +30,7 @@ public class MenuActivity extends Activity {
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
     private boolean error = false;
+    int kmTemp = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class MenuActivity extends Activity {
             Intent intent = new Intent(MenuActivity.this, GarageActivity.class);
             startActivity(intent);
         }
+        bd = bdHelper.verificarConexionSL(bd, MenuActivity.this);
         setTitle("Miauto - " + bdHelper.damePatente(bd));
         btnEstacionamiento = (ImageView) findViewById(R.id.btnEstacionamiento);
         btnCombustible = (ImageView) findViewById(R.id.btnCombustible);
@@ -91,6 +93,7 @@ public class MenuActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        bd = bdHelper.verificarConexionSL(bd, MenuActivity.this);
         if (!bdHelper.hayAuto(bd)){
             Intent intent = new Intent(MenuActivity.this, GarageActivity.class);
             startActivity(intent);
@@ -105,6 +108,7 @@ public class MenuActivity extends Activity {
     }
 
     private void popupKm() {
+        bd = bdHelper.verificarConexionSL(bd, MenuActivity.this);
         int hayKm = bdHelper.dameKilometrajeMaximo(bd);
         if (hayKm == 0){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -119,7 +123,11 @@ public class MenuActivity extends Activity {
         edKm.requestFocus();
         if (error==true){
             edKm.setError("¡Error!");
-            edKm.setHint("Campo obligatorio la primera vez");
+            if (kmTemp >= 0){
+                edKm.setText(Integer.toString(kmTemp));
+            } else {
+                edKm.setHint("Campo obligatorio la primera vez");
+            }
             Toast.makeText(getApplicationContext(), "Debe ingresar un kilometraje", Toast.LENGTH_SHORT).show();
         }
         edKm.setOnKeyListener(new View.OnKeyListener() {
@@ -135,11 +143,17 @@ public class MenuActivity extends Activity {
                     } else {
                         error = false;
                         int kilometraje = Integer.parseInt(kms);
-                        bdHelper.cargarKm(bd, Fechador.dameFechaActual(), kilometraje);
-                        Toast.makeText(getApplicationContext(), "Kilometraje ingresado correctamente", Toast.LENGTH_SHORT).show();
-                        finish();
-                        Intent intent = new Intent(MenuActivity.this, MenuActivity.class);
-                        startActivity(intent);
+                        if (kilometraje<0){
+                            Toast.makeText(getApplicationContext(), "El kilometraje no puede ser negativo", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            bd = bdHelper.verificarConexionLE(bd, MenuActivity.this);
+                            bdHelper.cargarKm(bd, Fechador.dameFechaActual(), kilometraje);
+                            Toast.makeText(getApplicationContext(), "Kilometraje ingresado correctamente", Toast.LENGTH_SHORT).show();
+                            finish();
+                            Intent intent = new Intent(MenuActivity.this, MenuActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 }
 
@@ -157,8 +171,16 @@ public class MenuActivity extends Activity {
                 } else {
                     error = false;
                     int kilometraje = Integer.parseInt(kms);
-                    bdHelper.cargarKm(bd, Fechador.dameFechaActual(), kilometraje);
-                    Toast.makeText(getApplicationContext(), "Kilometraje ingresado correctamente", Toast.LENGTH_SHORT).show();
+                    if (kilometraje<0){
+                        Toast.makeText(getApplicationContext(), "El kilometraje no puede ser negativo", Toast.LENGTH_SHORT).show();
+                        error = true;
+                        kmTemp=-1;
+                        popupKm();
+                    } else {
+                        bd = bdHelper.verificarConexionLE(bd, MenuActivity.this);
+                        bdHelper.cargarKm(bd, Fechador.dameFechaActual(), kilometraje);
+                        Toast.makeText(getApplicationContext(), "Kilometraje ingresado correctamente", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -167,6 +189,10 @@ public class MenuActivity extends Activity {
            @Override
            public void onCancel(DialogInterface dialog) {
                error = true;
+               String kms = edKm.getText().toString().trim();
+               if (kms.length() != 0) {
+                   kmTemp=Integer.parseInt(edKm.getText().toString());
+               }
                popupKm();
                          }
        });

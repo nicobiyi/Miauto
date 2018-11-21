@@ -3,7 +3,7 @@
     <string name="title_activity_estacionamiento">Map</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_combustible">CombustibleActivity</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Resetear cargas</string>
     <string name="section_format">Hello World from section</string>
     <string name="tipo">Tipo</string>
     <string name="text">Text</string>

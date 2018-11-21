@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ic_fondomalla"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/etLitros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/etKilometraje"
+        android:layout_marginTop="9dp"
+        android:backgroundTint="@android:color/white"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp"
+        android:visibility="visible"
+        android:nextFocusDown="@+id/etTotalCarga"  />
+
+    <TextView
+        android:id="@+id/tvLitros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etLitros"
+        android:layout_centerHorizontal="true"
+        android:text="Litros"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etTotalCarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etLitros"
+        android:layout_below="@+id/tvLitros"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/white"
+        android:ems="10"
+        android:hint="$"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="18sp"
+        android:nextFocusDown="@+id/edFechaCargaCombustible"/>
+
+    <TextView
+        android:id="@+id/tvTotalCarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etTotalCarga"
+        android:layout_centerHorizontal="true"
+        android:text="Total"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edFechaCargaCombustible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etTotalCarga"
+        android:layout_below="@+id/tvTotalCarga"
+        android:layout_marginTop="17dp"
+        android:backgroundTint="@android:color/white"
+        android:ems="10"
+        android:inputType="date"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:nextFocusDown="@+id/etKilometraje" />
+
+    <TextView
+        android:id="@+id/tvFechaCarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edFechaCargaCombustible"
+        android:layout_centerHorizontal="true"
+        android:text="Fecha"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etKilometraje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFechaCarga"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@android:color/white"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:nextFocusDown="@+id/btnGuardarCarga"/>
+
+    <TextView
+        android:id="@+id/tvKilometros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etKilometraje"
+        android:layout_centerHorizontal="true"
+        android:text="Kilometros"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnGuardarCarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvKilometros"
+        android:layout_marginTop="29dp"
+        android:text="Guardar Carga"
+        android:textSize="18sp" />
+</RelativeLayout>
