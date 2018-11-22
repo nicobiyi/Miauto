@@ -1,14 +1,16 @@
 package com.example.nicolas.miauto.Clases;
 
 public class Service {
-    public String getNombre() {
-        return nombre;
-    }
+
+    private String nombre;
+    private boolean tachada;
 
     public Service(String nombre, boolean tachada) {
         this.nombre = nombre;
         this.tachada = tachada;
     }
+
+    public String getNombre() { return nombre; }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -22,6 +24,5 @@ public class Service {
         this.tachada = tachada;
     }
 
-    private String nombre;
-    private boolean tachada;
+
 }

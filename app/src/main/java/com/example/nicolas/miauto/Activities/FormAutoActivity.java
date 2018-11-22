@@ -21,13 +21,14 @@ import com.example.nicolas.miauto.Clases.Auto;
 import com.example.nicolas.miauto.R;
 
 public class FormAutoActivity extends Activity {
-    EditText etPatente;
-    EditText etMarca;
-    EditText etModelo;
-    EditText etChasis;
-    EditText etMotor;
-    EditText etTipo;
-    Button btnRegistrarAuto;
+    private static final String CAMPOOBLIGATORIO = "Este campo es obligatorio.";
+    private EditText etPatente;
+    private EditText etMarca;
+    private EditText etModelo;
+    private EditText etChasis;
+    private EditText etMotor;
+    private EditText etTipo;
+    private Button btnRegistrarAuto;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
 
@@ -150,24 +151,24 @@ public class FormAutoActivity extends Activity {
         String texto;
         texto = etPatente.getText().toString();
         if(TextUtils.isEmpty(texto)) {
-            etPatente.setError("Este campo es obligatorio.");
+            etPatente.setError(CAMPOOBLIGATORIO);
             ok= false;
         } else if (!validarPatente(texto)){
             ok= false;
         }
         texto = etMarca.getText().toString();
         if(TextUtils.isEmpty(texto)) {
-            etMarca.setError("Este campo es obligatorio.");
+            etMarca.setError(CAMPOOBLIGATORIO);
             ok= false;
         }
         texto = etModelo.getText().toString();
         if(TextUtils.isEmpty(texto)) {
-            etModelo.setError("Este campo es obligatorio.");
+            etModelo.setError(CAMPOOBLIGATORIO);
             ok= false;
         }
         texto = etTipo.getText().toString();
         if(TextUtils.isEmpty(texto)) {
-            etTipo.setError("Este campo es obligatorio.");
+            etTipo.setError(CAMPOOBLIGATORIO);
             ok= false;
         }
         return ok;

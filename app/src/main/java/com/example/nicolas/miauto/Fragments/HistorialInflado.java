@@ -19,24 +19,23 @@ import java.util.List;
 public class HistorialInflado extends Fragment {
 
     public HistorialInflado(){}
-
-    ImageButton btnFecha1;
-    ImageButton btnFecha2;
-    ImageButton btnFecha3;
+    private ImageButton btnFecha1;
+    private ImageButton btnFecha2;
+    private ImageButton btnFecha3;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
     private List<Inflado> inflados;
-    TextView textFecha1;
-    TextView textFecha2;
-    TextView textFecha3;
-    TextView dd;
-    TextView di;
-    TextView td;
-    TextView ti;
-    TextView au;
-    TextView textAviso;
-    TextView textKms;
-    String TEXTVACIO = "--";
+    private TextView textFecha1;
+    private TextView textFecha2;
+    private TextView textFecha3;
+    private TextView dd;
+    private TextView di;
+    private TextView td;
+    private TextView ti;
+    private TextView au;
+    private TextView textAviso;
+    private TextView textKms;
+    private static final String TEXTVACIO = "--";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

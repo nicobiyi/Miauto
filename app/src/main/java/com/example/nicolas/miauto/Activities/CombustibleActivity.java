@@ -95,17 +95,8 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
                             .setTabListener(this));
         }
 
-        int vieneDelIntent = getIntent().getIntExtra("Cargas", 1);
-        if ( vieneDelIntent == 1){
-            getRoberto();
-        }
 
 
-    }
-
-    private Fragment getRoberto() {
-        Tab2DetallesCargas tab2 = new Tab2DetallesCargas();
-        return tab2;
     }
 
 

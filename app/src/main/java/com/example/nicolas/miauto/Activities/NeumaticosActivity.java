@@ -20,7 +20,7 @@ import com.example.nicolas.miauto.R;
 public class NeumaticosActivity extends Activity {
 
     //importamos la clase fragment y creamos objetos
-    Fragment currentFragment;
+    private Fragment currentFragment;
     private FragmentManager supportFragmentManager;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
