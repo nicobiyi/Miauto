@@ -52,11 +52,13 @@ public class Tab1Carga extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         rootView = inflater.inflate(R.layout.tab1x, container, false);
 
         /************************************************
          CODIGO PROPIO PARA CAPTURAR EL INPUT DEL USUARIO
          ************************************************/
+
 
         final View myFragmentView = inflater.inflate(R.layout.tab1x, container, false);
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
@@ -69,6 +71,8 @@ public class Tab1Carga extends Fragment {
         etTotal = (EditText) myFragmentView.findViewById(R.id.etTotalCarga);
         etKm = (EditText) myFragmentView.findViewById(R.id.etKilometraje);
         btn = (Button) myFragmentView.findViewById(R.id.btnGuardarCarga);
+
+
 
         //busco y autocompleto el Km mayor que tenga la bd
         bd = bdHelper.verificarConexionSL(bd, getActivity().getApplicationContext());
@@ -152,20 +156,7 @@ public class Tab1Carga extends Fragment {
         return myFragmentView;
     }
 
-    private void dameFecha() {
-        Calendar calendar =  Calendar.getInstance();
-        int anio = calendar.get(Calendar.YEAR);
-        int mes = calendar.get(Calendar.MONTH);
-        mes++;
-        int dia = calendar.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog dpd = new DatePickerDialog(getActivity().getApplicationContext(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-            }
-        }, anio, mes, dia);
-        dpd.show();
-    }
 
 
     private CargaCombustible capturarCargaCombustible (){
@@ -209,15 +200,6 @@ public class Tab1Carga extends Fragment {
         return ok;
     }
 
-    private ArrayList<String> listarCargasString(List<CargaCombustible> listaCargas) {
-        ArrayList<String> lista;
-        lista = new ArrayList<>();
 
-        for ( CargaCombustible carga:listaCargas
-                ) {
-            lista.add(carga.toString());
-        }
-        return lista;
-    }
 
 }
