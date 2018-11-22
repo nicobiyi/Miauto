@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorPerlado"
+    android:background="@drawable/ic_fondomalla"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvMesActual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPerlado"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:textSize="30dp"
@@ -20,6 +21,7 @@
         android:layout_marginTop="120dp"
         android:text="@string/text_estadisticas"
         android:textSize="30dp"
+        android:textColor="@color/colorPerlado"
         android:textStyle="bold|italic" />
 
     <TextView
@@ -27,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_tot_mensual"
+        android:textColor="@color/colorPerlado"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:textSize="24dp"
@@ -37,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24dp"
+        android:textColor="@color/colorPerlado"
         android:layout_alignTop="@id/tvTotalMensual"
         android:layout_toRightOf="@id/tvTotalMensual"
         android:layout_marginLeft="20dp"/>
@@ -46,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_max_carga"
+        android:textColor="@color/colorPerlado"
         android:textSize="24dp"
         android:layout_below="@id/tvTotalMensual"
         android:layout_marginLeft="30dp"
@@ -55,6 +60,7 @@
         android:id="@+id/tvCargaMaximaEstadistica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPerlado"
         android:text="$ 618,38"
         android:textSize="24dp"
         android:layout_alignTop="@id/tvCargaMaxima"

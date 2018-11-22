@@ -50,11 +50,19 @@ public class Tab3Estadisticas extends Fragment {
 
         mesActual.setText(new SimpleDateFormat("MMMM").format(calendar.getTime()));
 
-        //quiero ir a la base de datos y traerme la suma de plata gastada en ese mes
+
        try {
+           //quiero ir a la base de datos y traerme la suma de plata gastada en ese mes
            String totalMes = bdHelper.getGastoTotalMesActual(bd, mes+1);
            totalMes = "$ " + totalMes;
            totalMensual.setText(totalMes);
+
+           //Quiero ir a la base de datos y traerme la carga maxima en plata
+
+           
+
+
+
        } catch (Exception e){ };
 
 

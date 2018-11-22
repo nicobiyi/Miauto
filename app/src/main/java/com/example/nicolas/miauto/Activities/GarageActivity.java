@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class GarageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_garage);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
         hayAuto = bdHelper.hayAuto(bd);

@@ -8,7 +8,7 @@
     <string name="text">Text</string>
     <string name="text_tipo">Tipo</string>
     <string name="text_motor">Motor N°</string>
-    <string name="text_chasis">Chasis Nº</string>
+    <string name="text_chasis">Chasis N°</string>
     <string name="text_modelo">Modelo</string>
     <string name="text_marca">Marca</string>
     <string name="text_patente">Patente</string>
@@ -30,7 +30,12 @@
     <string name="text_guardar_carga">Guardar Carga</string>
     <string name="text_estadisticas">ESTADISTICAS</string>
     <string name="text_tot_mensual">Total Mensual</string>
-    <string name="text_max_carga">Carga Maxima</string>
+    <string name="text_max_carga">Carga Máxima</string>
+    <string name="menu_combu">Combustible</string>
+    <string name="menu_aire">Neumaticos</string>
+    <string name="menu_mapas">Donde Estacioné?</string>
+    <string name="menu_check">Check-list</string>
+    <string name="menu_info">Información del auto</string>
 
 
 </resources>

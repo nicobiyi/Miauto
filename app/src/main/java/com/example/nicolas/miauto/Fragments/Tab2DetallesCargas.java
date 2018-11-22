@@ -47,9 +47,8 @@ public class Tab2DetallesCargas extends Fragment {
         listaCargas = bdHelper.getCargas(bd);
         ArrayList listaCargasString = listarCargasString(listaCargas);
 
-        ArrayAdapter adaptador = new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listaCargasString);
+        ArrayAdapter adaptador = new ArrayAdapter(getActivity().getApplicationContext(), R.layout.listview, listaCargasString);
         lvListaCargas.setAdapter(adaptador);
-
 
 
         return rootView;

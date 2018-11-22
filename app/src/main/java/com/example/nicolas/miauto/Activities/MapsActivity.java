@@ -4,6 +4,7 @@ package com.example.nicolas.miauto.Activities;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
@@ -67,6 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

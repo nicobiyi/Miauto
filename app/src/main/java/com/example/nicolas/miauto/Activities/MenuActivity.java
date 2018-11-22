@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nicolas.miauto.BaseDeDatos.baseDatos;
@@ -27,6 +29,7 @@ public class MenuActivity extends Activity {
     ImageView btnNeumaticos;
     ImageView btnInfoAuto;
     ImageView btnService;
+    TextView tvbtnComb, tvbtnNeum, tvbtnMaps, tvbtnCheck, tvbtnInfo;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
     private boolean error = false;
@@ -36,6 +39,7 @@ public class MenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getReadableDatabase();
         if (!bdHelper.hayAuto(bd)){
@@ -49,6 +53,11 @@ public class MenuActivity extends Activity {
         btnNeumaticos = (ImageView) findViewById(R.id.btnNeumaticos);
         btnService = (ImageView) findViewById(R.id.btnService);
         btnInfoAuto = (ImageView) findViewById(R.id.btnInfoAuto);
+        tvbtnComb = (TextView)findViewById(R.id.tvbtnComb);
+        tvbtnNeum = (TextView)findViewById(R.id.tvbtnNeum);
+        tvbtnMaps = (TextView)findViewById(R.id.tvbtnMaps);
+        tvbtnCheck = (TextView)findViewById(R.id.tvbtnCheck);
+        tvbtnInfo = (TextView)findViewById(R.id.tvbtnInfo);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         btnEstacionamiento.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +89,43 @@ public class MenuActivity extends Activity {
             }
         });
         btnInfoAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, InfoAutoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        tvbtnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+        tvbtnComb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, CombustibleActivity.class);
+                startActivity(intent);
+            }
+        });
+        tvbtnNeum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, NeumaticosActivity.class);
+                startActivity(intent);
+            }
+        });
+        tvbtnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, ServiceActivity.class);
+                startActivity(intent);
+            }
+        });
+        tvbtnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, InfoAutoActivity.class);
