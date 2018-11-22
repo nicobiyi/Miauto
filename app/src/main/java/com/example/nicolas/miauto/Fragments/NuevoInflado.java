@@ -24,8 +24,8 @@ public class NuevoInflado extends Fragment {
 
     public NuevoInflado() { }
 
-    TextView texttemp;
-    int presion;
+    private TextView texttemp;
+    private int presion;
     private ImageButton btnUpdd;
     private ImageButton btnDowndd;
     private ImageButton btnUpdi;

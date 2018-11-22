@@ -29,8 +29,8 @@ public class ServiceActivity extends Activity {
     private List<Service> listaService;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
-    ImageButton btnAgregar;
-    CustomAdapter customAdapter;
+    private ImageButton btnAgregar;
+    private CustomAdapter customAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

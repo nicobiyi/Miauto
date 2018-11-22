@@ -2,6 +2,15 @@ package com.example.nicolas.miauto.Clases;
 
 public class Inflado {
 
+    private String fecha;
+    private int ruedadd;
+    private int ruedadi;
+    private int ruedatd;
+    private int ruedati;
+    private int ruedaau;
+    private int kilometraje;
+    private  boolean actualizarKm;
+
     public Inflado(String fecha, int ruedadd, int ruedadi, int ruedatd, int ruedati, int ruedaau, int kilometraje, boolean actualizarKm ) {
         this.fecha = fecha;
         this.ruedadd = ruedadd;
@@ -24,18 +33,8 @@ public class Inflado {
         this.actualizarKm = false;
     }
 
-    String fecha;
-    int ruedadd;
-    int ruedadi;
-    int ruedatd;
-    int ruedati;
-    int ruedaau;
-    int kilometraje;
-    private  boolean actualizarKm;
 
-    public String getFecha() {
-        return fecha;
-    }
+    public String getFecha() {return fecha; }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
