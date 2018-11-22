@@ -2,6 +2,7 @@ package com.example.nicolas.miauto.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,6 +32,7 @@ public class InfoAutoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_auto);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         etMarca = (EditText)findViewById(R.id.etMarca2);
         etModelo = (EditText)findViewById(R.id.etModelo2);
@@ -47,7 +49,7 @@ public class InfoAutoActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (chequearTextosVacios()){
-                    String patente= etPatente.getText().toString();
+                    String patente= etPatente.getText().toString().toUpperCase();
                     String marca= etMarca.getText().toString();
                     String modelo= etModelo.getText().toString();
                     String chasis= etChasis.getText().toString();

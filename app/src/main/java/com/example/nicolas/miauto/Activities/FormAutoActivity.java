@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -34,6 +35,7 @@ public class FormAutoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_auto);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,7 +50,7 @@ public class FormAutoActivity extends Activity {
         btnRegistrarAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String patente= etPatente.getText().toString();
+                String patente= etPatente.getText().toString().toUpperCase();
                 if (chequearTextosVacios()){
                     String marca= etMarca.getText().toString();
                     String modelo= etModelo.getText().toString();
