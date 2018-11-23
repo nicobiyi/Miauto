@@ -36,6 +36,7 @@
     <string name="menu_mapas">Donde Estacioné?</string>
     <string name="menu_check">Check-list</string>
     <string name="menu_info">Información del auto</string>
+    <string name="sin_datos">Sin Datos</string>
 
 
 </resources>

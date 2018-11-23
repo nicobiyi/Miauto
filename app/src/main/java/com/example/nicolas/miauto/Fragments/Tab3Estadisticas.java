@@ -27,10 +27,13 @@ import java.util.Calendar;
 public class Tab3Estadisticas extends Fragment {
 
     private TextView totalMensual;
-    // private TextView ltsMensuales;
+    private TextView cargaMaxMensual;
     private TextView mesActual;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
+    private String totalMes;
+    private String cargaMaxMes;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,27 +42,39 @@ public class Tab3Estadisticas extends Fragment {
         carsHelper = new baseDatos(getActivity().getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getWritableDatabase();
 
+
         Calendar calendar =  Calendar.getInstance();
         int mes = calendar.get(Calendar.MONTH);
 
         totalMensual = (TextView) rootView.findViewById(R.id.tvTotalMensualEstadistica);
-        //ltsMensuales = (TextView) rootView.findViewById(R.id.etLitrosMensuales);
+        cargaMaxMensual = (TextView) rootView.findViewById(R.id.tvCargaMaximaEstadistica);
 
 
         mesActual = (TextView) rootView.findViewById(R.id.tvMesActual);
 
         mesActual.setText(new SimpleDateFormat("MMMM").format(calendar.getTime()));
-
+        mes = mes+1;
 
        try {
+
            //quiero ir a la base de datos y traerme la suma de plata gastada en ese mes
-           String totalMes = bdHelper.getGastoTotalMesActual(bd, mes+1);
-           totalMes = "$ " + totalMes;
-           totalMensual.setText(totalMes);
+           bd = bdHelper.verificarConexionSL(bd, getActivity().getApplicationContext());
+           totalMes = bdHelper.getGastoTotalMesActual(bd, mes);
+
+           if(totalMes != null){
+               totalMensual.setText("$ " + totalMes);
+           }
 
            //Quiero ir a la base de datos y traerme la carga maxima en plata
+           bd = bdHelper.verificarConexionSL(bd, getActivity().getApplicationContext());
+           cargaMaxMes = bdHelper.getCargaMaxMesActual(bd, mes);
 
-           
+           if(totalMes != null){
+               cargaMaxMensual.setText("$ " + cargaMaxMes);
+           }
+
+
+
 
 
 

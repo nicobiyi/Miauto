@@ -413,7 +413,7 @@ public class bdHelper {
     }
 
     public static String getGastoTotalMesActual(SQLiteDatabase bd, int mes) {
-        String pesosMensuales = "Menos 1";
+        String pesosMensuales = "Sin datos";
         Cursor cursor = bd.rawQuery("select sum(total) dato from Combustible where substr(fecha,4,2) = '" +mes + "'", null);
 
         if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
@@ -427,6 +427,25 @@ public class bdHelper {
         bd.close();
         return pesosMensuales;
     }
+
+
+    public static String getCargaMaxMesActual(SQLiteDatabase bd, int mes) {
+        String cargaMaxMensual = "Sin datos";
+        Cursor cursor = bd.rawQuery("select max(total) dato from Combustible where substr(fecha,4,2) = '" +mes + "'", null);
+
+        if (cursor.getColumnCount() > 0 && cursor.moveToFirst()) {
+            // iteramos sobre el cursor de resultados,
+            // y vamos rellenando el array que posteriormente devolveremos
+            while (cursor.isAfterLast() == false) {
+                cargaMaxMensual = cursor.getString(cursor.getColumnIndex("dato"));
+                cursor.moveToNext();
+            }
+        }
+        bd.close();
+        return cargaMaxMensual;
+    }
+
+
 
 
     public static void borrarCargasCombustible(SQLiteDatabase bd) {
@@ -511,4 +530,6 @@ public class bdHelper {
         bd.execSQL(sql);
         bd.close();
     }
+
+
 }
