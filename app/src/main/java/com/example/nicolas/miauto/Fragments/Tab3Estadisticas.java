@@ -52,7 +52,7 @@ public class Tab3Estadisticas extends Fragment {
 
         mesActual = (TextView) rootView.findViewById(R.id.tvMesActual);
 
-        mesActual.setText(new SimpleDateFormat("MMMM").format(calendar.getTime()).toUpperCase());
+        mesActual.setText(new SimpleDateFormat("MMMM").format(calendar.getTime()));
         mes = mes+1;
 
        try {
