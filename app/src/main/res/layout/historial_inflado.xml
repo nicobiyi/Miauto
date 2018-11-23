@@ -130,7 +130,8 @@
         android:layout_centerHorizontal="true"
         android:text="@string/aviso_sin_inflados"
         android:textColor="@color/colorPrimaryDark"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:background="@color/colorCeleste"/>
 
     <TextView
         android:id="@+id/tvKmInflado"
