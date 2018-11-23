@@ -100,6 +100,8 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
         }
 
 
+
+
         String index = getIntent().getStringExtra("Cargas");
         if (index != null){
             mViewPager.setCurrentItem(Integer.parseInt(index));
