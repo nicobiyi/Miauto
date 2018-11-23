@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/ic_fondomalla"
@@ -73,8 +79,7 @@
         android:inputType="date"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:nextFocusDown="@+id/etKilometraje" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tvFechaCarga"
@@ -123,3 +128,4 @@
 
 
 </RelativeLayout>
+    </ScrollView>

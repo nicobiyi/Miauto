@@ -98,7 +98,7 @@ public class Tab1Carga extends Fragment {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month++;
                         etFecha.setText(dayOfMonth + "/" + month + "/" + year);
-                        etLitros.requestFocus();
+                        etKm.requestFocus();
                     }
                 }, anio, mes, dia);
                 dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
