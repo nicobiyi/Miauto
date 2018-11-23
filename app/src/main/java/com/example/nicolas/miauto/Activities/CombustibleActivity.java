@@ -57,17 +57,13 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(),mViewPager);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
 
 
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
-
         bd = carsHelper.getReadableDatabase();
         setTitle("Combustible - " + bdHelper.damePatente(bd));
 
@@ -100,10 +96,6 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
         }
 
 
-        String index = getIntent().getStringExtra("Cargas");
-        if (index != null){
-            mViewPager.setCurrentItem(Integer.parseInt(index));
-        }
 
     }
 
@@ -189,11 +181,8 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        ViewPager vp;
-
-        public SectionsPagerAdapter(FragmentManager fm,ViewPager vp) {
+        public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
-            this.vp = vp;
         }
 
         @Override
