@@ -1,13 +1,11 @@
 package com.example.nicolas.miauto.Fragments;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,9 +47,6 @@ public class Tab1Carga extends Fragment {
     private static SQLiteDatabase bd;
     private String fechaActual;
     private View rootView;
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,7 +136,7 @@ public class Tab1Carga extends Fragment {
 
                         //simular click en fragment2
                         Intent intent = new Intent(getActivity().getApplicationContext(), CombustibleActivity.class);
-                        intent.putExtra("Cargas", "1");
+                        intent.putExtra("Cargas", 1);
                         startActivity(intent);
 
                     } catch (Exception e) {

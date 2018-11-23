@@ -16,7 +16,7 @@
     <string name="btn_actualizar_info">Actualizar informacón</string>
     <string name="number_30">30</string>
     <string name="text_kms">Kilometros</string>
-    <string name="text_fecha">Fecha</string>
+    <string name="text_fecha">fecha</string>
     <string name="aviso_sin_inflados">NO HAY INFLADOS</string>
     <string name="hint_tipo">Sedan 5 Puertas</string>
     <string name="hint_modelo">Suran 1.6 5D 758</string>
