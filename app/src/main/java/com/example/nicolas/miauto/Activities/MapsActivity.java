@@ -4,6 +4,7 @@ package com.example.nicolas.miauto.Activities;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
@@ -42,8 +43,8 @@ import java.util.Locale;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap gmap;
-    ImageButton btnBorrar;
-    ImageButton btnGuardar;
+    private ImageButton btnBorrar;
+    private ImageButton btnGuardar;
     private List<Address> direcciones;
     private Geocoder geocoder;
     private Marker autoMarker;
@@ -51,10 +52,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationManager locationManager;
     private Location currentLocation;
     private static final int REQUEST_LOCATION_PERMISSION = 1;
-    LocationListener locationListener;
-    LatLng latLongAuto;
-    LatLng temp;
-    int cont = 0;
+    private static final int ZOOM = 16;
+    private static final int BEARING = 0;
+    private static final int TILT = 30;
+    private static final String ESTACIONADO = "Estacionado en:";
+    private LocationListener locationListener;
+    private LatLng latLongAuto;
+    private LatLng temp;
+    private int cont = 0;
 
     private static baseDatos carsHelper;
     private static SQLiteDatabase db;
@@ -63,6 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -223,7 +229,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 gmap.clear();
                 latLongAuto = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
                 autoMarker = gmap.addMarker(new MarkerOptions()
-                        .position(latLongAuto).title("Estacionado en:").draggable(true));
+                        .position(latLongAuto).title(ESTACIONADO).draggable(true));
                 autoMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.parking));
                 setSnipet(autoMarker);
                 zoomToLocation(autoMarker);
@@ -236,7 +242,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 gmap.clear();
                 latLongAuto = latLng;
                 autoMarker = gmap.addMarker(new MarkerOptions()
-                        .position(latLongAuto).title("Estacionado en:").draggable(true));
+                        .position(latLongAuto).title(ESTACIONADO).draggable(true));
                 autoMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.parking));
                 setSnipet(autoMarker);
                 zoomToLocation(autoMarker);
@@ -262,7 +268,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         latLongAuto = bdHelper.getEstacionamiento(db);
         if (latLongAuto!=null){
             autoMarker = gmap.addMarker(new MarkerOptions()
-                    .position(latLongAuto).title("Estacionado en:").draggable(true));
+                    .position(latLongAuto).title(ESTACIONADO).draggable(true));
             autoMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.parking));
             setSnipet(autoMarker);
             btnGuardar.setVisibility(View.INVISIBLE);
@@ -286,7 +292,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bdHelper.guardarDireccion(db, temp);
         latLongAuto= new LatLng(loc.getLatitude(),loc.getLongitude());
         autoMarker = gmap.addMarker(new MarkerOptions()
-                .position(latLongAuto).title("Estacionado en:").draggable(true));
+                .position(latLongAuto).title(ESTACIONADO).draggable(true));
         autoMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.parking));
         setSnipet(autoMarker);
         Toast.makeText(getApplicationContext(),"Ubicación guardada", Toast.LENGTH_LONG).show();
@@ -310,9 +316,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void zoomToLocation(Marker marker) {
         camera = new CameraPosition.Builder()
                 .target(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude))
-                .zoom(16)           // limit -> 21
-                .bearing(0)         // 0 - 365º
-                .tilt(30)           // limit -> 90
+                .zoom(ZOOM)           // limit -> 21
+                .bearing(BEARING)         // 0 - 365º
+                .tilt(TILT)           // limit -> 90
                 .build();
         gmap.animateCamera(CameraUpdateFactory.newCameraPosition(camera));
 

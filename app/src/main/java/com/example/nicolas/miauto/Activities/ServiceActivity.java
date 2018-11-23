@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,12 +30,13 @@ public class ServiceActivity extends Activity {
     private List<Service> listaService;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
-    ImageButton btnAgregar;
-    CustomAdapter customAdapter;
+    private ImageButton btnAgregar;
+    private CustomAdapter customAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         lvListaCargas = (ListView) findViewById(R.id.lvService);
         btnAgregar = (ImageButton)findViewById(R.id.btnAgregarService);
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);

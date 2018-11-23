@@ -10,6 +10,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -53,6 +54,7 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_combustible);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -93,17 +95,8 @@ public class CombustibleActivity extends Activity implements ActionBar.TabListen
                             .setTabListener(this));
         }
 
-        int vieneDelIntent = getIntent().getIntExtra("Cargas", 1);
-        if ( vieneDelIntent == 1){
-            getRoberto();
-        }
 
 
-    }
-
-    private Fragment getRoberto() {
-        Tab2DetallesCargas tab2 = new Tab2DetallesCargas();
-        return tab2;
     }
 
 

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,7 +20,7 @@ import com.example.nicolas.miauto.R;
 public class NeumaticosActivity extends Activity {
 
     //importamos la clase fragment y creamos objetos
-    Fragment currentFragment;
+    private Fragment currentFragment;
     private FragmentManager supportFragmentManager;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
@@ -33,6 +34,7 @@ public class NeumaticosActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neumaticos);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         carsHelper = new baseDatos(getApplicationContext(), "DBTest1", null, 1);
         bd = carsHelper.getReadableDatabase();
         setTitle("Neumáticos - " + bdHelper.damePatente(bd));

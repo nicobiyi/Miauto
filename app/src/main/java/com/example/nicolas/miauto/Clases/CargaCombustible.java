@@ -10,9 +10,6 @@ public class CargaCombustible {
     private int kilometraje;
     private double litros;
     private double total;
-
-
-
     private  boolean actualizarKm;
 
     public CargaCombustible(String fecha, int kilometraje, double litros, double total, boolean actualizarKM) {

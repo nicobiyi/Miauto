@@ -2,6 +2,7 @@ package com.example.nicolas.miauto.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,13 +18,14 @@ import com.example.nicolas.miauto.Clases.Auto;
 import com.example.nicolas.miauto.R;
 
 public class InfoAutoActivity extends Activity {
-    EditText etPatente;
-    EditText etMarca;
-    EditText etModelo;
-    EditText etChasis;
-    EditText etMotor;
-    EditText etTipo;
-    Button btnRegistrarAuto;
+    private static final String CAMPOOBLIGATORIO = "Este campo es obligatorio.";
+    private EditText etPatente;
+    private EditText etMarca;
+    private EditText etModelo;
+    private EditText etChasis;
+    private EditText etMotor;
+    private EditText etTipo;
+    private Button btnRegistrarAuto;
     private static baseDatos carsHelper;
     private static SQLiteDatabase bd;
 
@@ -31,6 +33,7 @@ public class InfoAutoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_auto);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         etMarca = (EditText)findViewById(R.id.etMarca2);
         etModelo = (EditText)findViewById(R.id.etModelo2);
@@ -47,7 +50,7 @@ public class InfoAutoActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (chequearTextosVacios()){
-                    String patente= etPatente.getText().toString();
+                    String patente= etPatente.getText().toString().toUpperCase();
                     String marca= etMarca.getText().toString();
                     String modelo= etModelo.getText().toString();
                     String chasis= etChasis.getText().toString();
@@ -71,24 +74,24 @@ public class InfoAutoActivity extends Activity {
         String texto;
         texto = etPatente.getText().toString();
         if(TextUtils.isEmpty(texto)) {
-            etPatente.setError("Este campo es obligatorio.");
+            etPatente.setError(CAMPOOBLIGATORIO);
             ok= false;
         } else if (!validarPatente(texto)){
             ok= false;
         }
         texto = etMarca.getText().toString();
         if(TextUtils.isEmpty(texto)) {
-            etMarca.setError("Este campo es obligatorio.");
+            etMarca.setError(CAMPOOBLIGATORIO);
             ok= false;
         }
         texto = etModelo.getText().toString();
         if(TextUtils.isEmpty(texto)) {
-            etModelo.setError("Este campo es obligatorio.");
+            etModelo.setError(CAMPOOBLIGATORIO);
             ok= false;
         }
         texto = etTipo.getText().toString();
         if(TextUtils.isEmpty(texto)) {
-            etTipo.setError("Este campo es obligatorio.");
+            etTipo.setError(CAMPOOBLIGATORIO);
             ok= false;
         }
         return ok;
