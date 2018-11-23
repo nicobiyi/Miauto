@@ -40,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24dp"
+        android:text="@string/sin_datos"
         android:textColor="@color/colorPerlado"
         android:layout_alignTop="@id/tvTotalMensual"
         android:layout_toRightOf="@id/tvTotalMensual"
@@ -61,8 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPerlado"
-        android:text="$ 618,38"
         android:textSize="24dp"
+        android:text="@string/sin_datos"
         android:layout_alignTop="@id/tvCargaMaxima"
         android:layout_toRightOf="@id/tvCargaMaxima"
         android:layout_marginLeft="20dp"/>
